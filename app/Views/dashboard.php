@@ -32,9 +32,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Product</th>
-                                            <th>Date</th>
-                                            <th>Price</th>
+                                            <th>Nama</th>
+                                            <th>Tanggal</th>
+                                            <th>Harga</th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -22,7 +22,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="<?php echo base_url('category'); ?>" class="nav-link">
                         <i class="nav-icon fas fa-tags"></i>
                         <p>Manajement Category</p>
@@ -39,7 +39,7 @@
                         <i class="nav-icon fas fa-dollar-sign"></i>
                         <p>Manajement Transaction</p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-header">ACCOUNT</li>
                 <li class="nav-item">
                     <a href="<?php echo base_url('auth/logout'); ?>" class="nav-link">
