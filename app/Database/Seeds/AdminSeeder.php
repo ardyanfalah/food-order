@@ -5,13 +5,13 @@ class AdminSeeder extends \CodeIgniter\Database\Seeder
     public function run()
     {
         $data = [
-            'username'  => 'admin',
-            'name'      => 'Admin',
+            'Nama'  => 'admin',
+            'Alamat'      => '-',
             'email'     => 'admin@example.com',
-            'password'  => '$2y$10$sOKww3LkoNzBtuW5SKxcJOVcY5eN3L1UsTMZpzgWLDd5MfiZ2mmNe',
+            'password'  => 'admin',
             'status'    => 'Active',
             'level'     => 'Admin'
         ];
-        $this->db->table('users')->insert($data);
+        $this->db->table('tbl_user')->insert($data);
     }
 } 

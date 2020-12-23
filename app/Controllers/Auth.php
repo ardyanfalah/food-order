@@ -17,7 +17,8 @@ class Auth extends BaseController
     {
         // if($this->cek_login() == TRUE){
 		// 	return redirect()->to(base_url('/dashboard'));
-		// }
+        // }
+        
         echo view('auth/login');
     }
 
@@ -25,7 +26,8 @@ class Auth extends BaseController
     {
         // if($this->cek_login() == TRUE){
 		// 	return redirect()->to(base_url('/dashboard'));
-		// }
+        // }
+        
         echo view('auth/login');
     }
 
