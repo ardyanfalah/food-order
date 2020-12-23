@@ -15,22 +15,23 @@ class Auth extends BaseController
     
     public function index()
     {
-        if($this->cek_login() == TRUE){
-			return redirect()->to(base_url('/dashboard'));
-		}
+        // if($this->cek_login() == TRUE){
+		// 	return redirect()->to(base_url('/dashboard'));
+		// }
         echo view('auth/login');
     }
 
     public function login()
     {
-        if($this->cek_login() == TRUE){
-			return redirect()->to(base_url('/dashboard'));
-		}
+        // if($this->cek_login() == TRUE){
+		// 	return redirect()->to(base_url('/dashboard'));
+		// }
         echo view('auth/login');
     }
 
     public function proses_login()
     {
+        
         $validation =  \Config\Services::validation();
 
         $email  = $this->request->getPost('email');

@@ -7,20 +7,21 @@ class Auth_model extends Model
 
     public function cek_login($email)
     {
-        $query = $this->table('users')
-                ->where('email', $email)
-                ->countAll();
+        // $query = $this->table('users')
+        //         ->where('email', $email)
+        //         ->countAll();
 
-        if($query >  0){
-            $hasil = $this->table('users')
-                    ->where('email', $email)
-                    ->limit(1)
-                    ->get()
-                    ->getRowArray();
-        } else {
-            $hasil = array(); 
-        }
-        return $hasil;
+        // if($query >  0){
+        //     $hasil = $this->table('users')
+        //             ->where('email', $email)
+        //             ->limit(1)
+        //             ->get()
+        //             ->getRowArray();
+        // } else {
+        //     $hasil = array(); 
+        // }
+        // return $hasil;
+        return true;
     }
 
     public function register($data)

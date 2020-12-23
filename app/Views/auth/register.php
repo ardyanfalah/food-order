@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Register - Sistem Informasi Penjualan</title>
+  <title>Register - Sistem Pemesanan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?php echo base_url('themes/plugins'); ?>/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="<?php echo base_url('themes/dist'); ?>/css/adminlte.min.css">
@@ -11,7 +11,7 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="<?php echo base_url('auth/register'); ?>"><b>SIP</b>Online</a>
+      <a href="<?php echo base_url('auth/register'); ?>"><b>AKACI</b></a>
     </div>
     <div class="card">
       <div class="card-body login-card-body">
@@ -37,15 +37,15 @@
         <?php echo form_open('/auth/proses_register'); ?>
         <div class="input-group mb-3">
           <?php
-            $username = [
+            $nama = [
               'type'  => 'text',
-              'name'  => 'username',
-              'id'    => 'username',
-              'value' => $inputs['username'],
+              'name'  => 'nama',
+              'id'    => 'nama',
+              'value' => $inputs['nama'],
               'class' => 'form-control',
-              'placeholder' => 'Username'
+              'placeholder' => 'nama'
             ];
-            echo form_input($username); 
+            echo form_input($nama); 
           ?>
           <div class="input-group-append">
             <div class="input-group-text">
@@ -55,15 +55,15 @@
         </div>
         <div class="input-group mb-3">
           <?php
-            $name = [
+            $alamat = [
               'type'  => 'text',
-              'name'  => 'name',
-              'id'    => 'name',
-              'value' => $inputs['name'],
+              'name'  => 'alamat',
+              'id'    => 'alamat',
+              'value' => $inputs['alamat'],
               'class' => 'form-control',
-              'placeholder' => 'Fullname'
+              'placeholder' => 'alamat'
             ];
-            echo form_input($name); 
+            echo form_input($alamat); 
           ?>
           <div class="input-group-append">
             <div class="input-group-text">
@@ -77,7 +77,7 @@
               'type'  => 'email',
               'name'  => 'email',
               'id'    => 'email',
-              'value' => $inputs['email'],
+              'value' => $inputs['Email'],
               'class' => 'form-control',
               'placeholder' => 'your_email@example.com'
             ];
