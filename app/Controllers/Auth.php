@@ -43,24 +43,25 @@ class Auth extends BaseController
             'email' => $email,
             'password' => $pass
         ]; 
-
+      
+        
         if($validation->run($data, 'authlogin') == FALSE){
             session()->setFlashdata('errors', $validation->getErrors());
             return redirect()->to(base_url('/auth/login'));
         } else {
 
             $cek_login = $this->auth_model->cek_login($email);
-
+            
             // email didapatkan
             if($cek_login == TRUE){
 
                 // jika email dan password cocok
-                if(password_verify($pass, $cek_login['password'])){
+                if($pass == $cek_login['Password']){
 
-                    session()->set('email', $cek_login['email']);
-                    session()->set('name', $cek_login['name']);
-                    session()->set('level', $cek_login['level']);
-                    session()->set('status', $cek_login['status']);
+                    session()->set('email', $cek_login['Email']);
+                    session()->set('name', $cek_login['Nama']);
+                    session()->set('level', $cek_login['Level']);
+                    session()->set('status', $cek_login['Status']);
                     
                     return redirect()->to(base_url('dashboard'));          
                 // email cocok, tapi password salah

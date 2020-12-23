@@ -3,25 +3,26 @@ use CodeIgniter\Model;
 
 class Auth_model extends Model
 {
-    protected $table = "users";
+    protected $table = "tbl_user";
 
     public function cek_login($email)
     {
-        // $query = $this->table('users')
-        //         ->where('email', $email)
-        //         ->countAll();
+        $query = $this->table('tbl_user')
+                ->where('Email', $email)
+                ->countAll();
 
-        // if($query >  0){
-        //     $hasil = $this->table('users')
-        //             ->where('email', $email)
-        //             ->limit(1)
-        //             ->get()
-        //             ->getRowArray();
-        // } else {
-        //     $hasil = array(); 
-        // }
-        // return $hasil;
-        return true;
+        if($query >  0){
+            $hasil = $this->table('tbl_user')
+                    ->where('Email', $email)
+                    ->limit(1)
+                    ->get()
+                    ->getRowArray();
+        } else {
+            $hasil = array(); 
+        }
+       
+        return $hasil;
+        // return true;
     }
 
     public function register($data)
