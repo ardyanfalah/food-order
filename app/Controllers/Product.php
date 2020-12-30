@@ -89,8 +89,8 @@ class Product extends Controller
  
     public function create()
     {
-        // $categories = $this->category_model->where('category_status', 'Active')->findAll();
-        // $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
+        $categories = $this->category_model->where('category_status', 'Active')->findAll();
+        $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
         return view('product/create', $data);
     }
 
@@ -137,8 +137,8 @@ class Product extends Controller
     
     public function edit($id)
     {  
-        // $categories = $this->category_model->where('category_status', 'Active')->findAll();
-        // $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
+        $categories = $this->category_model->where('category_status', 'Active')->findAll();
+        $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
 
         $data['product'] = $this->product_model->getProduct($id);
         echo view('product/edit', $data);
