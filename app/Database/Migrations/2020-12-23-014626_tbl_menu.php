@@ -30,6 +30,11 @@ class TblMenu extends Migration
 				'constraint' 		=> "'Active','Inactive'",
         		'default' 			=> 'Active'
 			],
+			'Image_Menu'       	=> [
+				'type'           	=> 'VARCHAR',
+				'constraint'     	=> '100',
+				'null'           	=> TRUE,
+			],
 			'Deskripsi_Menu' 		=> [
 				'type'           	=> 'TEXT',
 				'null'           	=> TRUE,
