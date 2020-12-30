@@ -3,19 +3,29 @@ use CodeIgniter\Model;
  
 class Product_model extends Model
 {
-    protected $table = 'products';
+    protected $table = 'tbl_menu';
      
     public function getProduct($id = false)
     {
+        // if($id === false){
+        //     return $this->table('products')
+        //                 ->join('categories', 'categories.category_id = products.category_id')
+        //                 ->get()
+        //                 ->getResultArray();
+        // } else {
+        //     return $this->table('products')
+        //                 ->join('categories', 'categories.category_id = products.category_id')
+        //                 ->where('products.product_id', $id)
+        //                 ->get()
+        //                 ->getRowArray();
+        // }   
         if($id === false){
-            return $this->table('products')
-                        ->join('categories', 'categories.category_id = products.category_id')
+            return $this->table('tbl_menu')
                         ->get()
                         ->getResultArray();
         } else {
-            return $this->table('products')
-                        ->join('categories', 'categories.category_id = products.category_id')
-                        ->where('products.product_id', $id)
+            return $this->table('tbl_menu')
+                        ->where('tbl_menu.Id_Menu', $id)
                         ->get()
                         ->getRowArray();
         }   
@@ -28,16 +38,18 @@ class Product_model extends Model
 
     public function updateProduct($data, $id)
     {
-        return $this->db->table($this->table)->update($data, ['product_id' => $id]);
+        // return $this->db->table($this->table)->update($data, ['product_id' => $id]);
+        return $this->db->table($this->table)->update($data, ['Id_Menu' => $id]);
+
     }
 
     public function deleteProduct($id)
     {
-        return $this->db->table($this->table)->delete(['product_id' => $id]);
+        return $this->db->table($this->table)->delete(['Id_Menu' => $id]);
     } 
 
     public function getPrice($id)
     {
-        return $this->db->table($this->table)->getWhere(['product_id' => $id])->getRowArray();
+        return $this->db->table($this->table)->getWhere(['Id_Menu' => $id])->getRowArray();
     }
 }

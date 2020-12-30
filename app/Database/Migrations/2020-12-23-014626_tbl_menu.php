@@ -17,13 +17,22 @@ class TblMenu extends Migration
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '100',
 			],
-			'Harga_Menu'       			=> [
+			'Harga_Menu'       		=> [
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '100',
 			],
-			'Jenis_Menu'       			=> [
+			'Jenis_Menu'       		=> [
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '100',
+			],
+			'Status_Menu'       	=> [
+				'type'           	=> 'ENUM',
+				'constraint' 		=> "'Active','Inactive'",
+        		'default' 			=> 'Active'
+			],
+			'Deskripsi_Menu' 		=> [
+				'type'           	=> 'TEXT',
+				'null'           	=> TRUE,
 			],
 		]);
 		$this->forge->addKey('Id_Menu', TRUE);

@@ -6,12 +6,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Create Product</h1>
+          <h1 class="m-0 text-dark">Tambah Menu</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Create Product</li>
+            <li class="breadcrumb-item active">Tambah Menu</li>
           </ol>
         </div>
       </div>
@@ -41,66 +41,63 @@
                 <div class="col-md-6">
                   <div class="form-group"> 
                     <?php 
-                      echo form_label('Category', 'Category');
-                      echo form_dropdown('category_id', $categories, $inputs['category_id'], ['class' => 'form-control']); 
-                    ?>
-                  </div>
-                  <div class="form-group">
-                    <?php 
-                      echo form_label('Name');
-                      $product_name = [
+                      // echo form_label('Category', 'Category');
+                      // echo form_dropdown('category_id', $categories, $inputs['category_id'], ['class' => 'form-control']); 
+                      echo form_label('Jenis');
+                      $jenis_menu = [
                         'type'  => 'text',
-                        'name'  => 'product_name',
-                        'id'    => 'product_name',
-                        'value' => $inputs['product_name'],
+                        'name'  => 'Jenis_Menu',
+                        'id'    => 'Jenis_Menu',
+                        'value' => $inputs['Jenis_Menu'],
                         'class' => 'form-control',
-                        'placeholder' => 'Product Name'
+                        'placeholder' => 'Jenis'
                       ];
-                      echo form_input($product_name); 
+                      echo form_input($jenis_menu); 
                     ?>
                   </div>
                   <div class="form-group">
                     <?php 
-                      echo form_label('Price');
-                      $product_price = [
+                      echo form_label('Nama');
+                      $Nama_Menu = [
+                        'type'  => 'text',
+                        'name'  => 'Nama_Menu',
+                        'id'    => 'Nama_Menu',
+                        'value' => $inputs['Nama_Menu'],
+                        'class' => 'form-control',
+                        'placeholder' => 'Nama'
+                      ];
+                      echo form_input($Nama_Menu); 
+                    ?>
+                  </div>
+                  <div class="form-group">
+                    <?php 
+                      echo form_label('Harga');
+                      $Harga_Menu = [
                         'type'  => 'number',
-                        'name'  => 'product_price',
-                        'id'    => 'product_price',
-                        'value' => $inputs['product_price'],
+                        'name'  => 'Harga_Menu',
+                        'id'    => 'Harga_Menu',
+                        'value' => $inputs['Harga_Menu'],
                         'class' => 'form-control',
                         'placeholder' => '0'
                       ];
-                      echo form_input($product_price); 
+                      echo form_input($Harga_Menu); 
                     ?>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <?php 
-                      echo form_label('SKU');
-                      $product_sku = [
-                        'type'  => 'text',
-                        'name'  => 'product_sku',
-                        'id'    => 'product_sku',
-                        'value' => $inputs['product_sku'],
-                        'class' => 'form-control',
-                        'placeholder' => 'Product SKU'
-                      ];
-                      echo form_input($product_sku); 
-                    ?>
-                  </div>
-                  <div class="form-group">
-                    <?php 
                       echo form_label('Status', 'Status');
-                      echo form_dropdown('product_status', ['' => 'Pilih', 'Active' => 'Active', 'Inactive' => 'Inactive'], $inputs['product_status'], ['class' => 'form-control']); 
+                      echo form_dropdown('Status_Menu', ['' => 'Pilih', 'Active' => 'Active', 'Inactive' => 'Inactive'], $inputs['Status_Menu'], ['class' => 'form-control']); 
                     ?>
                   </div>
                   <div class="form-group">
                     <?php 
                       echo form_label('Image');
-                      echo form_upload('product_image', '', ['class' => 'form-control']); 
+                      echo form_upload('Image_Menu', '', ['class' => 'form-control']); 
                     ?>
                   </div>
+                </div>
                 </div>
               </div>
               <div class="row">
@@ -108,15 +105,15 @@
                   <div class="form-group">
                     <?php 
                       echo form_label('Description'); 
-                      $product_desc = [
+                      $Deskripsi_Menu = [
                         'type'  => 'text',
-                        'name'  => 'product_description',
-                        'id'    => 'product_description',
-                        'value' => $inputs['product_description'],
+                        'name'  => 'Deskripsi_Menu',
+                        'id'    => 'Deskripsi_Menu',
+                        'value' => $inputs['Deskripsi_Menu'],
                         'class' => 'form-control',
                         'placeholder' => 'Product Description'
                       ];
-                      echo form_textarea($product_desc);
+                      echo form_textarea($Deskripsi_Menu);
                     ?>
                   </div>
                 </div>

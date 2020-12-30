@@ -48,14 +48,14 @@
                             </div>
                             <?php } ?>
                             <div class="row">
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-group">
                                     <?php 
-                                        echo form_label('Category');
-                                        echo form_dropdown('category', $categories, $category, ['class' => 'form-control', 'id' => 'category']); 
+                                        // echo form_label('Category');
+                                        // echo form_dropdown('category', $categories, $category, ['class' => 'form-control', 'id' => 'category']); 
                                     ?>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                     <?php 
@@ -79,7 +79,6 @@
                                         <tr>
                                             <th width="10px" class="text-center">No</th>
                                             <th>Thumbnail</th>
-                                            <th>SKU</th>
                                             <th>Name</th>
                                             <th>Category</th>
                                             <th>Price</th>
@@ -91,21 +90,20 @@
                                         <?php foreach($products as $key => $row){ ?>
                                         <tr>
                                             <td class="text-center"><?php echo ++$nomor; ?></td>
-                                            <td><img src="<?php echo base_url('uploads/'.$row['product_image']) ?>" class="rounded-circle" width="50" height="50"></td>
-                                            <td><?php echo $row['product_sku']; ?></td>
-                                            <td><?php echo $row['product_name']; ?></td>
-                                            <td><?php echo $row['category_name']; ?></td>
-                                            <td><?php echo "Rp. ".number_format($row['product_price']); ?></td>
-                                            <td><?php echo $row['product_status']; ?></td>
+                                            <td><img src="<?php echo base_url('uploads/'.$row['Image_Menu']) ?>" class="rounded-circle" width="50" height="50"></td>
+                                            <td><?php echo $row['Nama_Menu']; ?></td>
+                                            <td><?php echo $row['Jenis_Menu']; ?></td>
+                                            <td><?php echo "Rp. ".number_format($row['Harga_Menu']); ?></td>
+                                            <td><?php echo $row['Status_Menu']; ?></td>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <a href="<?php echo base_url('product/show/'.$row['product_id']); ?>" class="btn btn-sm btn-info">
+                                                    <a href="<?php echo base_url('product/show/'.$row['Id_Menu']); ?>" class="btn btn-sm btn-info">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
-                                                    <a href="<?php echo base_url('product/edit/'.$row['product_id']); ?>" class="btn btn-sm btn-success">
+                                                    <a href="<?php echo base_url('product/edit/'.$row['Id_Menu']); ?>" class="btn btn-sm btn-success">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="<?php echo base_url('product/delete/'.$row['product_id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
+                                                    <a href="<?php echo base_url('product/delete/'.$row['Id_Menu']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
                                                         <i class="fa fa-trash-alt"></i>
                                                     </a>
                                                 </div>

@@ -17,33 +17,62 @@ class Product extends Controller
 
     public function index()
     {
-        $category           = $this->request->getGet('category');
-        $keyword            = $this->request->getGet('keyword');
+        // // $category           = $this->request->getGet('category');
+        // // $keyword            = $this->request->getGet('keyword');
 
-        $data['category']   = $category;
+        // // $data['category']   = $category;
+        // // $data['keyword']    = $keyword;
+
+        // // $categories         = $this->category_model->where('category_status', 'Active')->findAll();
+        // // $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
+
+        // filter
+        // $where      = [];
+        // $like       = [];
+        // $or_like    = [];
+
+        // if(!empty($category)){
+        //     $where = ['products.category_id' => $category];
+        // }
+
+        // if(!empty($keyword)){
+        //     $like   = ['products.product_name' => $keyword];
+        //     $or_like   = ['products.product_sku' => $keyword, 'products.product_description' => $keyword];
+        // }
+        // // end filter
+
+        // // paginate
+        // $paginate = 5;
+        // $data['products']   = $this->product_model->join('categories', 'categories.category_id = products.category_id')->where($where)->like($like)->orLike($or_like)->paginate($paginate, 'product');
+        // $data['pager']      = $this->product_model->pager;
+
+        // // generate number untuk tetap bertambah meskipun pindah halaman paginate
+        // $nomor = $this->request->getGet('page_product');
+        // // define $nomor = 1 jika tidak ada get page_product
+        // if($nomor == null){
+        //     $nomor = 1;
+        // }
+        // $data['nomor'] = ($nomor - 1) * $paginate;
+        // end generate number
+        
+        $keyword            = $this->request->getGet('keyword');
         $data['keyword']    = $keyword;
 
-        $categories         = $this->category_model->where('category_status', 'Active')->findAll();
-        $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
 
         // filter
         $where      = [];
         $like       = [];
         $or_like    = [];
 
-        if(!empty($category)){
-            $where = ['products.category_id' => $category];
-        }
-
         if(!empty($keyword)){
-            $like   = ['products.product_name' => $keyword];
-            $or_like   = ['products.product_sku' => $keyword, 'products.product_description' => $keyword];
+            $like   = ['tbl_menu.Nama_Menu' => $keyword];
+            $or_like   = ['tbl_menu.Deskripsi_Menu' => $keyword];
         }
         // end filter
 
         // paginate
         $paginate = 5;
-        $data['products']   = $this->product_model->join('categories', 'categories.category_id = products.category_id')->where($where)->like($like)->orLike($or_like)->paginate($paginate, 'product');
+        $data['products']   = $this->product_model->where($where)->like($like)->orLike($or_like)->paginate($paginate, 'product');
         $data['pager']      = $this->product_model->pager;
 
         // generate number untuk tetap bertambah meskipun pindah halaman paginate
@@ -60,8 +89,8 @@ class Product extends Controller
  
     public function create()
     {
-        $categories = $this->category_model->where('category_status', 'Active')->findAll();
-        $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
+        // $categories = $this->category_model->where('category_status', 'Active')->findAll();
+        // $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
         return view('product/create', $data);
     }
 
@@ -70,18 +99,17 @@ class Product extends Controller
         $validation =  \Config\Services::validation();
 
         // get file
-        $image = $this->request->getFile('product_image');
+        $image = $this->request->getFile('Image_Menu');
         // random name file
         $name = $image->getRandomName();
 
         $data = array(
-            'category_id'           => $this->request->getPost('category_id'),
-            'product_name'          => $this->request->getPost('product_name'),
-            'product_price'         => $this->request->getPost('product_price'),
-            'product_sku'           => $this->request->getPost('product_sku'),
-            'product_status'        => $this->request->getPost('product_status'),
-            'product_image'         => $name,
-            'product_description'   => $this->request->getPost('product_description'),
+            'Nama_Menu'          => $this->request->getPost('Nama_Menu'),
+            'Harga_Menu'         => $this->request->getPost('Harga_Menu'),
+            'Jenis_Menu'           => $this->request->getPost('Jenis_Menu'),
+            'Status_Menu'        => $this->request->getPost('Status_Menu'),
+            'Image_Menu'         => $name,
+            'Deskripsi_Menu'   => $this->request->getPost('Deskripsi_Menu'),
         );
 
         if($validation->run($data, 'product') == FALSE){
@@ -109,8 +137,8 @@ class Product extends Controller
     
     public function edit($id)
     {  
-        $categories = $this->category_model->where('category_status', 'Active')->findAll();
-        $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
+        // $categories = $this->category_model->where('category_status', 'Active')->findAll();
+        // $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
 
         $data['product'] = $this->product_model->getProduct($id);
         echo view('product/edit', $data);
@@ -118,25 +146,24 @@ class Product extends Controller
 
     public function update()
     {
-        $id = $this->request->getPost('product_id');
+        $id = $this->request->getPost('Id_Menu');
 
         $validation =  \Config\Services::validation();
 
         // get file
-        $image = $this->request->getFile('product_image');
+        $image = $this->request->getFile('Image_Menu');
         // random name file
         $name = $image->getRandomName();
-
-        $data = array(
-            'category_id'           => $this->request->getPost('category_id'),
-            'product_name'          => $this->request->getPost('product_name'),
-            'product_price'         => $this->request->getPost('product_price'),
-            'product_sku'           => $this->request->getPost('product_sku'),
-            'product_status'        => $this->request->getPost('product_status'),
-            'product_image'         => $name,
-            'product_description'   => $this->request->getPost('product_description'),
-        );
         
+        $data = array(
+            'Nama_Menu'          => $this->request->getPost('Nama_Menu'),
+            'Harga_Menu'         => $this->request->getPost('Harga_Menu'),
+            'Jenis_Menu'           => $this->request->getPost('Jenis_Menu'),
+            'Status_Menu'        => $this->request->getPost('Status_Menu'),
+            'Image_Menu'         => $name,
+            'Deskripsi_Menu'   => $this->request->getPost('Deskripsi_Menu'),
+        );
+
         if($validation->run($data, 'product') == FALSE){
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());

@@ -29,37 +29,34 @@ class Validation
 	];
 	
 	public $product = [
-		'category_id'           => 'required',
-		'product_name'          => 'required',
-		'product_price'         => 'required',
-		'product_sku'           => 'required',
-		'product_status'        => 'required',
-		'product_image'         => 'uploaded[product_image]|mime_in[product_image,image/jpg,image/jpeg,image/gif,image/png]|max_size[product_image,1000]',
-		'product_description' 	=> 'required'
+		'Status_Menu'           => 'required',
+		'Nama_Menu'          => 'required',
+		'Harga_Menu'         => 'required',
+		'Jenis_Menu'           => 'required',
+		'Status_Menu'        => 'required',
+		'Image_Menu'         => 'uploaded[Image_Menu]|mime_in[Image_Menu,image/jpg,image/jpeg,image/gif,image/png]|max_size[Image_Menu,1000]',
+		'Deskripsi_Menu' 	=> 'required'
 	];
 
 	public $product_errors = [
-		'category_id' 	=> [
+		'Jenis_Menu' 	=> [
 			'required' 	=> 'Nama category wajib diisi.',
 		],
-		'product_name'	=> [
+		'Nama_Menu'	=> [
 			'required' 	=> 'Nama product wajib diisi.'
 		],
-		'product_price' => [
+		'Harga_Menu' => [
 			'required' 	=> 'Harga product wajib diisi.'
-		],
-		'product_sku'  	=> [
-			'required' 	=> 'Kode product wajib diisi.'
 		],
 		'product_status'=> [
 			'required' 	=> 'Status product wajib diisi.'
 		],
-		'product_image'=> [
+		'Image_Menu'=> [
 			'mime_in' 	=> 'Gambar product hanya boleh diisi dengan jpg, jpeg, png atau gif.',
 			'max_size'	=> 'Gambar product maksimal 1mb',
 			'uploaded'	=> 'Gambar product wajib diisi'
 		],
-		'product_description'   => [
+		'Deskripsi_Menu'   => [
 			'required' 			=> 'Description product wajib diisi.'
 		]
 	];
