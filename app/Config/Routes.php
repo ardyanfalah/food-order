@@ -30,6 +30,8 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+	
+$routes->resource('ProductAPI');
 $routes->get('/', 'Dashboard::index');
 
 $routes->get('auth/login', 'Auth::login');
@@ -50,6 +52,8 @@ $routes->post('category/update/(:num)', 'Category::update/$1');
 $routes->get('category/delete/(:num)', 'Category::delete/$1');
 
 $routes->get('product', 'Product::index');
+// $routes->resource('product');
+
 $routes->get('product/create', 'Product::create');
 $routes->post('product/store', 'Product::store');
 $routes->get('product/show/(:num)', 'Product::show/$1');
@@ -58,6 +62,7 @@ $routes->get('product/edit/(:num)', 'Product::edit/$1');
 $routes->post('product/update', 'Product::update');
 $routes->get('product/delete/(:num)', 'Product::delete/$1');
 
+$routes->resource('TransactionAPI');
 $routes->get('transaction', 'Transaction::index');
 $routes->get('transaction/import', 'Transaction::import');
 $routes->post('transaction/proses_import', 'Transaction::proses_import');

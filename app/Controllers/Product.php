@@ -3,7 +3,7 @@
 use CodeIgniter\Controller;
 use App\Models\Product_model;
 use App\Models\Category_model;
- 
+
 class Product extends Controller
 {
     protected $helpers = [];
@@ -87,8 +87,14 @@ class Product extends Controller
         echo view('product/index', $data);
     }
  
+    public function getProduct()
+    {
+        $data = $this->product_model->where('Status_Menu','Active')->findAll();
+    }
+
     public function create()
     {
+        
         $categories = $this->category_model->where('category_status', 'Active')->findAll();
         $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
         return view('product/create', $data);

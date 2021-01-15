@@ -56,6 +56,6 @@ class Products extends Migration
 
 	public function down()
 	{
-		//
+		$this->forge->dropTable('products');
 	}
 }

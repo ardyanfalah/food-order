@@ -31,12 +31,13 @@ class Transactions extends Migration
 		$this->forge->addKey('trx_id', TRUE);
 		$this->forge->addForeignKey('product_id','products','product_id','CASCADE','CASCADE');
 		$this->forge->createTable('transactions');
+
 	}
 
 	//--------------------------------------------------------------------
 
 	public function down()
 	{
-		//
+		$this->forge->dropTable('transactions');
 	}
 }

@@ -4,7 +4,8 @@ use CodeIgniter\Model;
 class Product_model extends Model
 {
     protected $table = 'tbl_menu';
-     
+    protected $primaryKey = 'Id_Menu';
+    protected $allowedFields = ['Nama_Menu','Harga_Menu','Status_Menu','Image_Menu','Deskripsi_Menu'];
     public function getProduct($id = false)
     {
         // if($id === false){

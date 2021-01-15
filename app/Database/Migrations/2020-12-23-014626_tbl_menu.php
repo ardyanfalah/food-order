@@ -48,6 +48,6 @@ class TblMenu extends Migration
 
 	public function down()
 	{
-		//
+		$this->forge->dropTable('tbl_menu');
 	}
 }
