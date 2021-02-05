@@ -30,13 +30,15 @@ class Transaction_model extends Model
     // }
     public function getTransaction($id = false)
     {
+        $query = $this->db->query("SELECT trans.*, user1.Nama as nama_admin, user2.Nama as nama_pelanggan, tbl_menu.Nama_Menu FROM tbl_transaksi trans inner join tbl_user user1 on trans.Id_Admin = user1.Id inner join tbl_user user2 on trans.Id_Pelanggan = user2.Id INNER join tbl_menu on tbl_menu.Id_Menu = trans.Id_Menu");
         if($id === false){
-            return $this->table('tbl_transaksi')
-                        ->select('tbl_menu.*, tbl_transaksi.*,tbl_user.Nama')
-                        ->join('tbl_menu', 'tbl_menu.Id_Menu = tbl_transaksi.Id_Menu','INNER')
-                        ->join('tbl_user', 'tbl_user.Id = tbl_transaksi.Id_Admin','INNER')
-                        ->get()
-                        ->getResultArray();
+            return $query->getResultArray();
+            // return $this->table('tbl_transaksi')
+            //             ->select('tbl_menu.*, tbl_transaksi.*,tbl_user.Nama')
+            //             ->join('tbl_menu', 'tbl_menu.Id_Menu = tbl_transaksi.Id_Menu','INNER')
+            //             ->join('tbl_user', 'tbl_user.Id = tbl_transaksi.Id_Admin','INNER')
+            //             ->get()
+            //             ->getResultArray();
         } else {
             return $this->table('tbl_transaksi')
                         ->select('tbl_menu.*, tbl_transaksi.*,tbl_user.Nama')

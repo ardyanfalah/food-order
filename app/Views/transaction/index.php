@@ -90,12 +90,12 @@
                                         <?php foreach($transactions as $key => $row){ ?>
                                         <tr>
                                             <td><?php echo $key + 1; ?></td>
-                                            <td><?php //echo $row['product_name']; ?></td>
-                                            <td><?php //echo date('d-m-Y', strtotime($row['trx_date'])); ?></td>
-                                            <td><?php //echo "Rp. ".number_format($row['trx_price']); ?></td>
-                                            <td><?php //echo "Rp. ".number_format($row['trx_price']); ?></td>
-                                            <td><?php //echo "Rp. ".number_format($row['trx_price']); ?></td>
-                                            <td><?php //echo "Rp. ".number_format($row['trx_price']); ?></td>
+                                            <td><?php echo $row['Nama']; ?></td>
+                                            <td><?php echo $row['Id_Pelanggan']; ?></td>
+                                            <td><?php echo $row['Tanggal_Trx']; ?></td>
+                                            <td><?php echo $row['Nama_Menu']; ?></td>
+                                            <td><?php echo $row['Jumlah_Makanan']; ?></td>
+                                            <td><?php echo $row['Harga_Menu']; ?></td>
                                         </tr>
                                         <?php } ?>
                                     </tbody>
