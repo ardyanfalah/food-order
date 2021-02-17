@@ -47,7 +47,7 @@ class TblTransaksi extends Migration
 		$this->forge->addKey('Id_Trx', TRUE);
 		$this->forge->addForeignKey('Id_Admin','tbl_user','id','CASCADE','CASCADE');
 		$this->forge->addForeignKey('Id_Pelanggan','tbl_user','id','CASCADE','CASCADE');
-		$this->forge->addForeignKey('Id_Menu','tbl_menu','Id_Menu','CASCADE','CASCADE');
+		$this->forge->addForeignKey('Id_Menu','tbl_menu1','Id_Menu','CASCADE','CASCADE');
 		$this->forge->createTable('tbl_transaksi');
 	}
 

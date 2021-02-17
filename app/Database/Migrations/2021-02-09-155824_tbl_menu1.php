@@ -2,7 +2,7 @@
 
 use CodeIgniter\Database\Migration;
 
-class TblMenu extends Migration
+class TblMenu1 extends Migration
 {
 	public function up()
 	{
@@ -41,13 +41,13 @@ class TblMenu extends Migration
 			],
 		]);
 		$this->forge->addKey('Id_Menu', TRUE);
-		$this->forge->createTable('tbl_menu');
+		$this->forge->createTable('tbl_menu1');
 	}
 
 	//--------------------------------------------------------------------
 
 	public function down()
 	{
-		$this->forge->dropTable('tbl_menu');
+		$this->forge->dropTable('tbl_menu1');
 	}
 }

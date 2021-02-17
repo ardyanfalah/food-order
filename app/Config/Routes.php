@@ -32,6 +32,10 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 	
 $routes->resource('ProductAPI');
+$routes->resource('KategoriAPI');
+$routes->resource('PelangganAPI');
+$routes->resource('TempatAPI');
+$routes->resource('MenuAPI');
 $routes->get('/', 'Dashboard::index');
 
 $routes->get('auth/login', 'Auth::login');

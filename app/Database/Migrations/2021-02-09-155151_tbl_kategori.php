@@ -2,37 +2,31 @@
 
 use CodeIgniter\Database\Migration;
 
-class Categories extends Migration
+class TblKategori extends Migration
 {
 	public function up()
 	{
 		$this->forge->addField([
-			'category_id'			=> [
+			'id_ktgr'				=> [
 				'type'           	=> 'BIGINT',
 				'constraint'     	=> 20,
 				'unsigned'       	=> TRUE,
 				'auto_increment' 	=> TRUE
 			],
-			'category_name'       	=> [
+			'nama_ktgr'       		=> [
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '100',
 			],
-			'category_status' 		=> [
-				'type'           	=> 'ENUM',
-				'constraint' 		=> "'Active','Inactive'",
-				'default' 			=> 'Active'
-			],
+			
 		]);
-		$this->forge->addKey('category_id', TRUE);
-		$this->forge->createTable('categories');
-
+		$this->forge->addKey('id_ktgr', TRUE);
+		$this->forge->createTable('tbl_Kategori');
 	}
 
 	//--------------------------------------------------------------------
 
 	public function down()
 	{
-		$this->forge->dropTable('categories');
-
+		$this->forge->dropTable('tbl_Kategori');
 	}
 }
