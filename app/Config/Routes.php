@@ -32,6 +32,8 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 	
 $routes->resource('ProductAPI');
+$routes->resource('TransactionAPI');
+
 $routes->get('/', 'Dashboard::index');
 
 $routes->get('auth/login', 'Auth::login');
@@ -62,7 +64,6 @@ $routes->get('product/edit/(:num)', 'Product::edit/$1');
 $routes->post('product/update', 'Product::update');
 $routes->get('product/delete/(:num)', 'Product::delete/$1');
 
-$routes->resource('TransactionAPI');
 $routes->get('transaction', 'Transaction::index');
 $routes->get('transaction/import', 'Transaction::import');
 $routes->post('transaction/proses_import', 'Transaction::proses_import');

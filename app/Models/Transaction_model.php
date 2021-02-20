@@ -54,4 +54,8 @@ class Transaction_model extends Model
     {
         return $this->db->table($this->table)->insert($data);
     }
+
+    public function insertBatchTransaction($data){
+        return $this->db->table($this->table)->insertBatch($data); 
+    }
 }

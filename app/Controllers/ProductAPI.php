@@ -20,6 +20,7 @@ class ProductAPI extends ResourceController
         return $this->respond($response, 200);
     }
  
+ 
     // get single product
     public function show($id = null)
     {

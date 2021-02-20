@@ -12,15 +12,29 @@ class TransactionAPI extends ResourceController
     public function index()
     {
         $model = new Transaction_model();
-        $data = $model->getTransaction();
-        $response = [
-            'success'   => true,
-            'data'  => $data,
-            'messages' => 'success'
-        ];
+        // $data = $model->getTransaction();
+        try
+        {
+            $data = $model->getTransaction();
+            $response = [
+                'success'   => true,
+                'data'  => $data,
+                'messages' => 'success'
+            ];
+        }
+        catch (\Exception $e)
+        {
+            $response = [
+                'success'   => false,
+                'data'  => null,
+                'messages' => $e->getMessage()
+            ];
+        }
+    
+        
         return $this->respond($response, 200);
     }
- 
+
     // get single product
     public function show($id = null)
     {
@@ -33,26 +47,47 @@ class TransactionAPI extends ResourceController
         }
     }
  
+    public function test(){
+        
+        $data = [
+            'Id_Trx'          => 0,
+            'Id_Admin'         => $this->request->getPost('Id_Admin'),
+            'Id_Pelanggan'           => $this->request->getPost('Id_Pelanggan'),
+            'Id_Menu'        => $this->request->getPost('Id_Menu'),
+            'Jumlah_Makanan'         => $this->request->getPost('Jumlah_Makanan'),
+            'Harga_Menu'         => $this->request->getPost('Harga_Menu'),
+            'Tanggal_Trx'   => $this->request->getPost('Tanggal_Trx'),
+        ];
+
+        $response = [
+            'success'   => true,
+            'data'  => $data,
+            'messages' => 'failed'
+        ];
+        return $this->respond($response, 200);
+    }
+
     // create a product
     public function create()
     {
         $model = new Transaction_model();
-        $data = [
-            'product_name' => $this->request->getPost('product_name'),
-            'product_price' => $this->request->getPost('product_price')
-        ];
-        $data = json_decode(file_get_contents("php://input"));
-        //$data = $this->request->getPost();
-        $model->insert($data);
-        $response = [
-            'status'   => 201,
-            'error'    => null,
-            'messages' => [
-                'success' => 'Data Saved'
-            ]
-        ];
-         
-        return $this->respondCreated($data, 201);
+        $myJson = file_get_contents("php://input");
+        $myArray = json_decode($myJson, true);
+        try{
+            $data = $model->insertBatchTransaction($myArray);
+            $response = [
+                'success'   => true,
+                'data'  => null,
+                'messages' => 'success'
+            ];
+        } catch (\Exception $e) {
+            $response = [
+                'success'   => false,
+                'data'  => $e->getMessage(),
+                'messages' => 'failed'
+            ];
+        }
+        return $this->respond($response, 200);
     }
  
     // update product

@@ -87,11 +87,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <?php foreach($transactions as $key => $row){ ?>
                                         <tr>
                                             <td><?php echo $key + 1; ?></td>
-                                            <td><?php echo $row['Nama']; ?></td>
-                                            <td><?php echo $row['Id_Pelanggan']; ?></td>
+                                            <td><?php echo $row['nama_admin']; ?></td>
+                                            <td><?php echo $row['nama_pelanggan']; ?></td>
                                             <td><?php echo $row['Tanggal_Trx']; ?></td>
                                             <td><?php echo $row['Nama_Menu']; ?></td>
                                             <td><?php echo $row['Jumlah_Makanan']; ?></td>
