@@ -80,22 +80,30 @@
                                             <th>No</th>
                                             <th>Nama Admin</th>
                                             <th>Nama Pelanggan</th>
-                                            <th>Waktu</th>
+                                            <th>Waktu Pesan</th>
+                                            <th>Waktu Datang</th>
+                                            <th>Waktu Bayar</th>
                                             <th>Menu</th>
                                             <th>Jumlah</th>
-                                            <th>Harga</th>
+                                            <th>Status</th>
+                                            <th>Harga Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <?php foreach($transactions as $key => $row){ ?>
                                         <tr>
                                             <td><?php echo $key + 1; ?></td>
-                                            <td><?php //echo $row['product_name']; ?></td>
-                                            <td><?php //echo date('d-m-Y', strtotime($row['trx_date'])); ?></td>
-                                            <td><?php //echo "Rp. ".number_format($row['trx_price']); ?></td>
-                                            <td><?php //echo "Rp. ".number_format($row['trx_price']); ?></td>
-                                            <td><?php //echo "Rp. ".number_format($row['trx_price']); ?></td>
-                                            <td><?php //echo "Rp. ".number_format($row['trx_price']); ?></td>
+                                            <td><?php echo $row['nama_admin']; ?></td>
+                                            <td><?php echo $row['nama_plgn']; ?></td>
+                                            <td><?php echo $row['waktu_pmsn']; ?></td>
+                                            <td><?php echo $row['waktu_dtg']; ?></td>
+                                            <td><?php echo $row['waktu_byr']; ?></td>
+                                            <td><?php echo $row['nama_menu']; ?></td>
+                                            <td><?php echo $row['jumlah_pesan']; ?></td>
+                                            <td><?php echo $row['status_pemesanan']; ?></td>
+                                            <td><?php echo $row['total_harga']; ?></td>
+
                                         </tr>
                                         <?php } ?>
                                     </tbody>

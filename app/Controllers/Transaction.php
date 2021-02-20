@@ -1,8 +1,10 @@
 <?php namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\Product_model;
 use App\Models\Transaction_model;
+use App\Models\Menu_model;
+use App\Models\Product_model;
+use App\Models\Pemesanan_model;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -14,13 +16,13 @@ class Transaction extends Controller
     public function __construct()
     {
         helper(['form']);
-        $this->transaction_model = new Transaction_model();
-        $this->product_model = new Product_model();
+        $this->pemesanan_model = new Pemesanan_model();
+        $this->menu_model = new Menu_model();
     }
 
     public function index()
     {
-        $data['transactions'] = $this->transaction_model->getTransaction();
+        $data['transactions'] = $this->pemesanan_model->getPemesanan();
         echo view('transaction/index', $data);
     }
 
@@ -81,7 +83,7 @@ class Transaction extends Controller
                     "trx_price"     => $trx_price
                 ];
 
-                $simpan = $this->transaction_model->insertTransaction($data);
+                $simpan = $this->pemesanan_model->insertTransaction($data);
             }
 
             if($simpan)
@@ -94,7 +96,7 @@ class Transaction extends Controller
 
     public function getTrxPrice($product_id)
     {
-        $price = $this->product_model->getPrice($product_id);
+        $price = $this->menu_model->getPrice($product_id);
         $data = $price['product_price'];
         return $data;
     }
@@ -102,7 +104,7 @@ class Transaction extends Controller
     public function export()
     {
         // ambil data transaction dari database
-        $transactions = $this->transaction_model->getTransaction();
+        $transactions = $this->pemesanan_model->getTransaction();
         // panggil class Sreadsheet baru
         $spreadsheet = new Spreadsheet;
         // Buat custom header pada file excel

@@ -62,14 +62,14 @@
                                         <?php foreach($categories as $key => $row){ ?>
                                         <tr>
                                             <td><?php echo $key + 1; ?></td>
-                                            <td><?php echo $row['category_name']; ?></td>
-                                            <td><?php echo $row['category_status']; ?></td>
+                                            <td><?php echo $row['nama_ktgr']; ?></td>
+                                            <td><?php echo $row['status_ktgr']; ?></td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a href="<?php echo base_url('category/edit/'.$row['category_id']); ?>" class="btn btn-sm btn-success">
+                                                    <a href="<?php echo base_url('category/edit/'.$row['id_ktgr']); ?>" class="btn btn-sm btn-success">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="<?php echo base_url('category/delete/'.$row['category_id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
+                                                    <a href="<?php echo base_url('category/delete/'.$row['id_ktgr']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
                                                         <i class="fa fa-trash-alt"></i>
                                                     </a>
                                                 </div>

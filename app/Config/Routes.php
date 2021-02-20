@@ -36,6 +36,8 @@ $routes->resource('KategoriAPI');
 $routes->resource('PelangganAPI');
 $routes->resource('TempatAPI');
 $routes->resource('MenuAPI');
+$routes->resource('PemesananAPI');
+$routes->resource('RatingAPI');
 $routes->get('/', 'Dashboard::index');
 
 $routes->get('auth/login', 'Auth::login');
@@ -48,23 +50,41 @@ $routes->post('auth/proses_register', 'Auth::proses_register');
 
 $routes->get('dashboard', 'Dashboard::index');
 
-$routes->get('category', 'Category::index');
-$routes->get('category/create', 'Category::create');
-$routes->post('category/store', 'Category::store');
-$routes->get('category/edit/(:num)', 'Category::edit/$1');
-$routes->post('category/update/(:num)', 'Category::update/$1');
-$routes->get('category/delete/(:num)', 'Category::delete/$1');
+// $routes->get('category', 'Category::index');
+// $routes->get('category/create', 'Category::create');
+// $routes->post('category/store', 'Category::store');
+// $routes->get('category/edit/(:num)', 'Category::edit/$1');
+// $routes->post('category/update/(:num)', 'Category::update/$1');
+// $routes->get('category/delete/(:num)', 'Category::delete/$1');
 
-$routes->get('product', 'Product::index');
+$routes->get('category', 'Kategori::index');
+$routes->get('category/create', 'Kategori::create');
+$routes->post('category/store', 'Kategori::store');
+$routes->get('category/edit/(:num)', 'Kategori::edit/$1');
+$routes->post('category/update/(:num)', 'Kategori::update/$1');
+$routes->get('category/delete/(:num)', 'Kategori::delete/$1');
+
+// $routes->get('product', 'Product::index');
+// // $routes->resource('product');
+
+// $routes->get('product/create', 'Product::create');
+// $routes->post('product/store', 'Product::store');
+// $routes->get('product/show/(:num)', 'Product::show/$1');
+// $routes->get('product/edit/(:num)', 'Product::edit/$1');
+// // $routes->post('product/update/(:num)', 'Product::update/$1');
+// $routes->post('product/update', 'Product::update');
+// $routes->get('product/delete/(:num)', 'Product::delete/$1');
+
+$routes->get('product', 'Menu::index');
 // $routes->resource('product');
 
-$routes->get('product/create', 'Product::create');
-$routes->post('product/store', 'Product::store');
-$routes->get('product/show/(:num)', 'Product::show/$1');
-$routes->get('product/edit/(:num)', 'Product::edit/$1');
+$routes->get('product/create', 'Menu::create');
+$routes->post('product/store', 'Menu::store');
+$routes->get('product/show/(:num)', 'Menu::show/$1');
+$routes->get('product/edit/(:num)', 'Menu::edit/$1');
 // $routes->post('product/update/(:num)', 'Product::update/$1');
-$routes->post('product/update', 'Product::update');
-$routes->get('product/delete/(:num)', 'Product::delete/$1');
+$routes->post('product/update', 'Menu::update');
+$routes->get('product/delete/(:num)', 'Menu::delete/$1');
 
 $routes->resource('TransactionAPI');
 $routes->get('transaction', 'Transaction::index');

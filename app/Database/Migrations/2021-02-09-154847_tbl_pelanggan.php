@@ -33,6 +33,11 @@ class TblPelanggan extends Migration
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '20',
 			],
+			'status' 				=> [
+				'type'           	=> 'ENUM',
+				'constraint' 		=> "'Active','Inactive'",
+				'default' 			=> 'Active'
+			],
 			
 		]);
 		$this->forge->addKey('id_plgn', TRUE);

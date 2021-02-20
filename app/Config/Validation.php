@@ -15,48 +15,47 @@ class Validation
 	];
 
 	public $category = [
-        'category_name'     => 'required',
-        'category_status'     => 'required'
+        'nama_ktgr'     => 'required',
+        'status_ktgr'     => 'required'
 	];
 	
 	public $category_errors = [
-        'category_name' => [
+        'nama_ktgr' => [
             'required'    => 'Nama category wajib diisi.',
         ],
-        'category_status'    => [
+        'status_ktgr'    => [
             'required' => 'Status category wajib diisi.'
         ]
 	];
 	
 	public $product = [
-		'Status_Menu'           => 'required',
-		'Nama_Menu'          => 'required',
-		'Harga_Menu'         => 'required',
-		'Jenis_Menu'           => 'required',
-		'Status_Menu'        => 'required',
-		'Image_Menu'         => 'uploaded[Image_Menu]|mime_in[Image_Menu,image/jpg,image/jpeg,image/gif,image/png]|max_size[Image_Menu,1000]',
-		'Deskripsi_Menu' 	=> 'required'
+		'nama_menu'          => 'required',
+		'harga_menu'         => 'required',
+		'id_ktgr'           => 'required',
+		'status_Menu'        => 'required',
+		'gambar_menu'         => 'uploaded[gambar_menu]|mime_in[gambar_menu,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar_menu,1000]',
+		'deskripsi_menu' 	=> 'required'
 	];
 
 	public $product_errors = [
-		'Jenis_Menu' 	=> [
+		'id_ktgr' 	=> [
 			'required' 	=> 'Nama category wajib diisi.',
 		],
-		'Nama_Menu'	=> [
+		'nama_menu'	=> [
 			'required' 	=> 'Nama product wajib diisi.'
 		],
-		'Harga_Menu' => [
+		'harga_menu' => [
 			'required' 	=> 'Harga product wajib diisi.'
 		],
-		'product_status'=> [
+		'status_Menu'=> [
 			'required' 	=> 'Status product wajib diisi.'
 		],
-		'Image_Menu'=> [
+		'gambar_menu'=> [
 			'mime_in' 	=> 'Gambar product hanya boleh diisi dengan jpg, jpeg, png atau gif.',
 			'max_size'	=> 'Gambar product maksimal 1mb',
 			'uploaded'	=> 'Gambar product wajib diisi'
 		],
-		'Deskripsi_Menu'   => [
+		'deskripsi_menu'   => [
 			'required' 			=> 'Description product wajib diisi.'
 		]
 	];

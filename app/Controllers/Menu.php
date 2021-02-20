@@ -1,18 +1,18 @@
 <?php namespace App\Controllers;
  
 use CodeIgniter\Controller;
-use App\Models\Product_model;
-use App\Models\Category_model;
+use App\Models\Menu_model;
+use App\Models\Kategori_model;
 
-class Product extends Controller
+class Menu extends Controller
 {
     protected $helpers = [];
 
     public function __construct()
     {
         helper(['form']);
-        $this->category_model = new Category_model();
-        $this->product_model = new Product_model();
+        $this->kategori_model  = new Kategori_model();
+        $this->menu_model = new Menu_model();
     }
 
     public function index()
@@ -23,8 +23,8 @@ class Product extends Controller
         // // $data['category']   = $category;
         // // $data['keyword']    = $keyword;
 
-        // // $categories         = $this->category_model->where('category_status', 'Active')->findAll();
-        // // $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
+        $categories         = $this->kategori_model ->where('status_ktgr', 'Active')->findAll();
+        $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'nama_ktgr', 'id_ktgr');
 
         // filter
         // $where      = [];
@@ -32,7 +32,7 @@ class Product extends Controller
         // $or_like    = [];
 
         // if(!empty($category)){
-        //     $where = ['products.category_id' => $category];
+        //     $where = ['products.id_ktgr' => $category];
         // }
 
         // if(!empty($keyword)){
@@ -43,8 +43,8 @@ class Product extends Controller
 
         // // paginate
         // $paginate = 5;
-        // $data['products']   = $this->product_model->join('categories', 'categories.category_id = products.category_id')->where($where)->like($like)->orLike($or_like)->paginate($paginate, 'product');
-        // $data['pager']      = $this->product_model->pager;
+        // $data['products']   = $this->menu_model->join('categories', 'categories.id_ktgr = products.id_ktgr')->where($where)->like($like)->orLike($or_like)->paginate($paginate, 'product');
+        // $data['pager']      = $this->menu_model->pager;
 
         // // generate number untuk tetap bertambah meskipun pindah halaman paginate
         // $nomor = $this->request->getGet('page_product');
@@ -65,15 +65,15 @@ class Product extends Controller
         $or_like    = [];
 
         if(!empty($keyword)){
-            $like   = ['tbl_menu.Nama_Menu' => $keyword];
-            $or_like   = ['tbl_menu.Deskripsi_Menu' => $keyword];
+            $like   = ['tbl_menu.nama_menu' => $keyword];
+            $or_like   = ['tbl_menu.deskripsi_menu' => $keyword];
         }
         // end filter
 
         // paginate
         $paginate = 5;
-        $data['products']   = $this->product_model->where($where)->like($like)->orLike($or_like)->paginate($paginate, 'product');
-        $data['pager']      = $this->product_model->pager;
+        $data['products']   = $this->menu_model->where($where)->like($like)->orLike($or_like)->paginate($paginate, 'product');
+        $data['pager']      = $this->menu_model->pager;
 
         // generate number untuk tetap bertambah meskipun pindah halaman paginate
         $nomor = $this->request->getGet('page_product');
@@ -87,16 +87,16 @@ class Product extends Controller
         echo view('product/index', $data);
     }
  
-    public function getProduct()
+    public function getMenu()
     {
-        $data = $this->product_model->where('Status_Menu','Active')->findAll();
+        $data = $this->menu_model->where('status_Menu','Active')->findAll();
     }
 
     public function create()
     {
         
-        $categories = $this->category_model->where('category_status', 'Active')->findAll();
-        $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
+        $categories = $this->kategori_model ->where('status_ktgr', 'Active')->findAll();
+        $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'nama_ktgr', 'id_ktgr');
         return view('product/create', $data);
     }
 
@@ -105,17 +105,17 @@ class Product extends Controller
         $validation =  \Config\Services::validation();
 
         // get file
-        $image = $this->request->getFile('Image_Menu');
+        $image = $this->request->getFile('gambar_menu');
         // random name file
         $name = $image->getRandomName();
 
         $data = array(
-            'Nama_Menu'          => $this->request->getPost('Nama_Menu'),
-            'Harga_Menu'         => $this->request->getPost('Harga_Menu'),
-            'Jenis_Menu'           => $this->request->getPost('Jenis_Menu'),
-            'Status_Menu'        => $this->request->getPost('Status_Menu'),
-            'Image_Menu'         => $name,
-            'Deskripsi_Menu'   => $this->request->getPost('Deskripsi_Menu'),
+            'nama_menu'          => $this->request->getPost('nama_menu'),
+            'harga_menu'         => $this->request->getPost('harga_menu'),
+            'id_ktgr'           => $this->request->getPost('id_ktgr'),
+            'status_Menu'        => $this->request->getPost('status_Menu'),
+            'gambar_menu'         => $name,
+            'deskripsi_menu'   => $this->request->getPost('deskripsi_menu'),
         );
 
 
@@ -127,7 +127,7 @@ class Product extends Controller
             // upload
             $image->move(ROOTPATH . 'public/uploads', $name);
             // insert
-            $simpan = $this->product_model->insertProduct($data);
+            $simpan = $this->menu_model->insertMenu($data);
             if($simpan)
             {
                 session()->setFlashdata('success', 'Created Product successfully');
@@ -138,37 +138,37 @@ class Product extends Controller
  
     public function show($id)
     {  
-        $data['product'] = $this->product_model->getProduct($id);
+        $data['product'] = $this->menu_model->getProduct($id);
         echo view('product/show', $data);
     }
     
     public function edit($id)
     {  
-        $categories = $this->category_model->where('category_status', 'Active')->findAll();
-        $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'category_name', 'category_id');
+        $categories = $this->kategori_model ->where('status_ktgr', 'Active')->findAll();
+        $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'nama_ktgr', 'id_ktgr');
 
-        $data['product'] = $this->product_model->getProduct($id);
+        $data['product'] = $this->menu_model->getProduct($id);
         echo view('product/edit', $data);
     }
 
     public function update()
     {
-        $id = $this->request->getPost('Id_Menu');
+        $id = $this->request->getPost('id_menu');
 
         $validation =  \Config\Services::validation();
 
         // get file
-        $image = $this->request->getFile('Image_Menu');
+        $image = $this->request->getFile('gambar_menu');
         // random name file
         $name = $image->getRandomName();
         
         $data = array(
-            'Nama_Menu'          => $this->request->getPost('Nama_Menu'),
-            'Harga_Menu'         => $this->request->getPost('Harga_Menu'),
-            'Jenis_Menu'           => $this->request->getPost('Jenis_Menu'),
-            'Status_Menu'        => $this->request->getPost('Status_Menu'),
-            'Image_Menu'         => $name,
-            'Deskripsi_Menu'   => $this->request->getPost('Deskripsi_Menu'),
+            'nama_menu'          => $this->request->getPost('nama_menu'),
+            'harga_menu'         => $this->request->getPost('harga_menu'),
+            'id_ktgr'           => $this->request->getPost('id_ktgr'),
+            'status_Menu'        => $this->request->getPost('status_Menu'),
+            'gambar_menu'         => $name,
+            'deskripsi_menu'   => $this->request->getPost('deskripsi_menu'),
         );
 
         if($validation->run($data, 'product') == FALSE){
@@ -179,7 +179,7 @@ class Product extends Controller
             // upload
             $image->move(ROOTPATH . 'public/uploads', $name);
             // update
-            $ubah = $this->product_model->updateProduct($data, $id);
+            $ubah = $this->menu_model->updateMenu($data, $id);
             if($ubah)
             {
                 session()->setFlashdata('info', 'Updated Product successfully');
@@ -190,7 +190,7 @@ class Product extends Controller
  
     public function delete($id)
     {
-        $hapus = $this->product_model->deleteProduct($id);
+        $hapus = $this->menu_model->deleteMenu($id);
         if($hapus)
         {
             session()->setFlashdata('warning', 'Deleted Product successfully');

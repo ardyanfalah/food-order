@@ -43,9 +43,11 @@ class TblPemesanan extends Migration
 			],
 			'waktu_dtg' 			=> [
 				'type'           	=> 'DATETIME',
+				'null'				=> TRUE
 			],
 			'waktu_byr' 			=> [
 				'type'           	=> 'DATETIME',
+				'null'				=> TRUE
 			],
 			'jumlah_pesan' 			=> [
 				'type'           	=> 'INT',

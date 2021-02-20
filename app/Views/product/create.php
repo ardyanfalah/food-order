@@ -41,46 +41,46 @@
                 <div class="col-md-6">
                   <div class="form-group"> 
                     <?php 
-                      // echo form_label('Category', 'Category');
-                      // echo form_dropdown('category_id', $categories, $inputs['category_id'], ['class' => 'form-control']); 
-                      echo form_label('Jenis');
-                      $jenis_menu = [
-                        'type'  => 'text',
-                        'name'  => 'Jenis_Menu',
-                        'id'    => 'Jenis_Menu',
-                        'value' => $inputs['Jenis_Menu'],
-                        'class' => 'form-control',
-                        'placeholder' => 'Jenis'
-                      ];
-                      echo form_input($jenis_menu); 
+                      echo form_label('Category', 'Category');
+                      echo form_dropdown('id_ktgr', $categories, $inputs['id_ktgr'], ['class' => 'form-control']); 
+                      // echo form_label('Jenis');
+                      // $jenis_menu = [
+                      //   'type'  => 'text',
+                      //   'name'  => 'Jenis_Menu',
+                      //   'id'    => 'Jenis_Menu',
+                      //   'value' => $inputs['Jenis_Menu'],
+                      //   'class' => 'form-control',
+                      //   'placeholder' => 'Jenis'
+                      // ];
+                      // echo form_input($jenis_menu); 
                     ?>
                   </div>
                   <div class="form-group">
                     <?php 
                       echo form_label('Nama');
-                      $Nama_Menu = [
+                      $nama_menu = [
                         'type'  => 'text',
-                        'name'  => 'Nama_Menu',
-                        'id'    => 'Nama_Menu',
-                        'value' => $inputs['Nama_Menu'],
+                        'name'  => 'nama_menu',
+                        'id'    => 'nama_menu',
+                        'value' => $inputs['nama_menu'],
                         'class' => 'form-control',
                         'placeholder' => 'Nama'
                       ];
-                      echo form_input($Nama_Menu); 
+                      echo form_input($nama_menu); 
                     ?>
                   </div>
                   <div class="form-group">
                     <?php 
                       echo form_label('Harga');
-                      $Harga_Menu = [
+                      $harga_menu = [
                         'type'  => 'number',
-                        'name'  => 'Harga_Menu',
-                        'id'    => 'Harga_Menu',
-                        'value' => $inputs['Harga_Menu'],
+                        'name'  => 'harga_menu',
+                        'id'    => 'harga_menu',
+                        'value' => $inputs['harga_menu'],
                         'class' => 'form-control',
                         'placeholder' => '0'
                       ];
-                      echo form_input($Harga_Menu); 
+                      echo form_input($harga_menu); 
                     ?>
                   </div>
                 </div>
@@ -88,13 +88,13 @@
                   <div class="form-group">
                     <?php 
                       echo form_label('Status', 'Status');
-                      echo form_dropdown('Status_Menu', ['' => 'Pilih', 'Active' => 'Active', 'Inactive' => 'Inactive'], $inputs['Status_Menu'], ['class' => 'form-control']); 
+                      echo form_dropdown('status_Menu', ['' => 'Pilih', 'Active' => 'Active', 'Inactive' => 'Inactive'], $inputs['status_Menu'], ['class' => 'form-control']); 
                     ?>
                   </div>
                   <div class="form-group">
                     <?php 
                       echo form_label('Image');
-                      echo form_upload('Image_Menu', '', ['class' => 'form-control']); 
+                      echo form_upload('gambar_menu', '', ['class' => 'form-control']); 
                     ?>
                   </div>
                 </div>
@@ -105,15 +105,15 @@
                   <div class="form-group">
                     <?php 
                       echo form_label('Description'); 
-                      $Deskripsi_Menu = [
+                      $deskripsi_menu = [
                         'type'  => 'text',
-                        'name'  => 'Deskripsi_Menu',
-                        'id'    => 'Deskripsi_Menu',
-                        'value' => $inputs['Deskripsi_Menu'],
+                        'name'  => 'deskripsi_menu',
+                        'id'    => 'deskripsi_menu',
+                        'value' => $inputs['deskripsi_menu'],
                         'class' => 'form-control',
                         'placeholder' => 'Product Description'
                       ];
-                      echo form_textarea($Deskripsi_Menu);
+                      echo form_textarea($deskripsi_menu);
                     ?>
                   </div>
                 </div>

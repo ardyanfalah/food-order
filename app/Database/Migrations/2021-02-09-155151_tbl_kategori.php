@@ -17,6 +17,11 @@ class TblKategori extends Migration
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '100',
 			],
+			'status_ktgr' 		=> [
+				'type'           	=> 'ENUM',
+				'constraint' 		=> "'Active','Inactive'",
+				'default' 			=> 'Active'
+			],
 			
 		]);
 		$this->forge->addKey('id_ktgr', TRUE);

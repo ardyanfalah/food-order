@@ -38,17 +38,17 @@
                   </div>
                   <?php } ?>
 
-                  <input type="hidden" name="category_id" value="<?php echo $category['category_id']; ?>">
+                  <input type="hidden" name="id_ktgr" value="<?php echo $category['id_ktgr']; ?>">
                   <div class="form-group">
                       <label for="">Name</label>
-                      <input type="text" value="<?php echo $category['category_name']; ?>" class="form-control" name="category_name" placeholder="Enter category name">
+                      <input type="text" value="<?php echo $category['nama_ktgr']; ?>" class="form-control" name="nama_ktgr" placeholder="Enter category name">
                   </div>
                   <div class="form-group">
                       <label for="">Status</label>
-                      <select name="category_status" id="" class="form-control">
+                      <select name="status_ktgr" id="" class="form-control">
                           <option value="">Pilih Kategori</option>
-                          <option value="Active" <?php echo $category['category_status'] == "Active" ? 'selected' : '' ?>>Active</option>
-                          <option value="Inactive" <?php echo $category['category_status'] == "Inactive" ? 'selected' : '' ?>>Inactive</option>
+                          <option value="Active" <?php echo $category['status_ktgr'] == "Active" ? 'selected' : '' ?>>Active</option>
+                          <option value="Inactive" <?php echo $category['status_ktgr'] == "Inactive" ? 'selected' : '' ?>>Inactive</option>
                       </select>
                   </div>
 

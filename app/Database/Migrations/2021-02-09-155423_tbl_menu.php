@@ -39,6 +39,11 @@ class TblMenu extends Migration
 				'type'           	=> 'TEXT',
 				'null'           	=> TRUE,
 			],
+			'status_Menu'       	=> [
+				'type'           	=> 'ENUM',
+				'constraint' 		=> "'Active','Inactive'",
+        		'default' 			=> 'Active'
+			],
 		]);
 		$this->forge->addKey('id_menu', TRUE);
 		$this->forge->addForeignKey('id_ktgr','tbl_Kategori','id_ktgr','CASCADE','CASCADE');

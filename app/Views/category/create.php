@@ -41,14 +41,14 @@
 
                   <div class="form-group">
                       <label for="">Name</label>
-                      <input type="text" class="form-control" name="category_name" placeholder="Enter category name" value="<?php echo $inputs['category_name']; ?>">
+                      <input type="text" class="form-control" name="nama_ktgr" placeholder="Enter category name" value="<?php echo $inputs['nama_ktgr']; ?>">
                   </div>
                   <div class="form-group">
                       <label for="">Status</label>
-                      <select name="category_status" id="" class="form-control">
+                      <select name="status_ktgr" id="" class="form-control">
                           <option value="">Pilih Kategori</option>
-                          <option <?php echo $inputs['category_status'] == "Active" ? "selected" : ""; ?> value="Active">Active</option>
-                          <option <?php echo $inputs['category_status'] == "Inactive" ? "selected" : ""; ?> value="Inactive">Inactive</option>
+                          <option <?php echo $inputs['status_ktgr'] == "Active" ? "selected" : ""; ?> value="Active">Active</option>
+                          <option <?php echo $inputs['status_ktgr'] == "Inactive" ? "selected" : ""; ?> value="Inactive">Inactive</option>
                       </select>
                   </div>
                 </div>

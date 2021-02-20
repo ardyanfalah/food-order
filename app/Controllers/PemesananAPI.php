@@ -2,20 +2,20 @@
  
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
-use App\Models\Product_model;
-use App\Models\Transaction_model;
+use App\Models\Pemesanan_model;
  
-class TransactionAPI extends ResourceController
+class PemesananAPI extends ResourceController
 {
     use ResponseTrait;
     // get all product
     public function index()
     {
-        $model = new Transaction_model();
-        // $data = $model->getTransaction();
+        $model = new Pemesanan_model();
+        
+        $data = $model->getPemesanan();
         try
         {
-            $data = $model->getTransaction();
+            $data = $model->getPemesanan();
             $response = [
                 'success'   => true,
                 'data'  => $data,
@@ -31,14 +31,15 @@ class TransactionAPI extends ResourceController
             ];
         }
     
+        
         return $this->respond($response, 200);
     }
 
     // get single product
     public function show($id = null)
     {
-        $model = new Transaction_model();
-        $data = $model->getWhere(['Id_Menu' => $id])->getResult();
+        $model = new Pemesanan_model();
+        $data = $model->getWhere(['id_pmsn' => $id])->getResult();
         if($data){
             return $this->respond($data);
         }else{
@@ -66,14 +67,15 @@ class TransactionAPI extends ResourceController
         return $this->respond($response, 200);
     }
 
+
     // create a product
     public function create()
     {
-        $model = new Transaction_model();
+        $model = new Pemesanan_model();
         $myJson = file_get_contents("php://input");
         $myArray = json_decode($myJson, true);
         try{
-            $data = $model->insertBatchTransaction($myArray);
+            $data = $model->insertBatch($myArray);
             $response = [
                 'success'   => true,
                 'data'  => null,
@@ -89,10 +91,39 @@ class TransactionAPI extends ResourceController
         return $this->respond($response, 200);
     }
  
+    // update product
+    public function update($id = null)
+    {
+        $model = new Pemesanan_model();
+        $json = $this->request->getJSON();
+        if($json){
+            $data = [
+                'product_name' => $json->product_name,
+                'product_price' => $json->product_price
+            ];
+        }else{
+            $input = $this->request->getRawInput();
+            $data = [
+                'product_name' => $input['product_name'],
+                'product_price' => $input['product_price']
+            ];
+        }
+        // Insert to Database
+        $model->update($id, $data);
+        $response = [
+            'status'   => 200,
+            'error'    => null,
+            'messages' => [
+                'success' => 'Data Updated'
+            ]
+        ];
+        return $this->respond($response);
+    }
+ 
     // delete product
     public function delete($id = null)
     {
-        $model = new Transaction_model();
+        $model = new Pemesanan_model();
         $data = $model->find($id);
         if($data){
             $model->delete($id);
@@ -108,6 +139,7 @@ class TransactionAPI extends ResourceController
         }else{
             return $this->failNotFound('No Data Found with id '.$id);
         }
+         
     }
  
 }
