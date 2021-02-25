@@ -66,7 +66,7 @@ $routes->get('category', 'Kategori::index');
 $routes->get('category/create', 'Kategori::create');
 $routes->post('category/store', 'Kategori::store');
 $routes->get('category/edit/(:num)', 'Kategori::edit/$1');
-$routes->post('category/update/(:num)', 'Kategori::update/$1');
+$routes->post('category/update', 'Kategori::update');
 $routes->get('category/delete/(:num)', 'Kategori::delete/$1');
 
 // $routes->get('product', 'Product::index');

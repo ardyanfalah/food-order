@@ -64,7 +64,7 @@ class Kategori extends Controller
 
     public function update()
     {
-        $id = $this->request->getPost('category_id');
+        $id = $this->request->getPost('id_ktgr');
 
         $validation =  \Config\Services::validation();
 
