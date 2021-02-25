@@ -38,7 +38,10 @@ $routes->resource('TempatAPI');
 $routes->resource('MenuAPI');
 // $routes->get('PemesananAPI/testCheck', 'PemesananAPI::testCheck');
 $routes->post('PemesananAPI/testCheck', 'PemesananAPI::testCheck');
+$routes->post('PemesananAPI/create_pemesanan', 'PemesananAPI::createPemesanan');
+
 $routes->resource('PemesananAPI');
+$routes->resource('PemesananDetailAPI');
 $routes->resource('RatingAPI');
 $routes->get('/', 'Dashboard::index');
 

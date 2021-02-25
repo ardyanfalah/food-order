@@ -12,7 +12,7 @@ class RatingAPI extends ResourceController
     {
         $model = new Rating_model();
         try{
-            $data = $model->getRatingLimit();
+            $data = $model->getRating();
             $response = [
                 'success'   => true,
                 'data'  => $data,

@@ -49,19 +49,72 @@ class PemesananAPI extends ResourceController
  
     public function testCheck(){
         $model = new Pemesanan_model();
-        // $id = $model->getNextId();
         $myJson = file_get_contents("php://input");
-        $data = json_decode($myJson);
-        $tempheader =json_encode($data[0]);
-        $header=json_decode($tempheader,true);
-        $tempdetail =json_encode($data[1]);
-        $detail=json_decode($tempdetail,true);
-        $response = [
-            'success'   => true,
-            'data'  => $header,
-            'messages' => 'success'
-        ];
+        $temp = json_decode($myJson);
+        if(is_array($temp)){
+            $data = $temp;
+        } else {
+            $data = json_decode($temp);
+        }
+        $obj = $data[0];
+        $arr = $data[1];
+        try{
+            foreach($arr as $i => $item) {
+                $item->id_pmsn = 77;
+            }
+            $response = [
+                'success'   => true,
+                'data'  => json_encode($data),
+                'messages' => 'success'
+            ];
+        } catch(\Exception $e){
+            $response = [
+                'success'   => true,
+                'data'  => $e->getMessage(),
+                'messages' => 'success'
+            ];
+        }
+        
         return $this->respond($response, 200);
+    }
+
+    public function createPemesanan()
+    {
+        $model = new Pemesanan_model();
+        $myJson = file_get_contents("php://input");
+        $temp = json_decode($myJson);
+        if(is_array($temp)){
+            $data = $temp;
+        } else {
+            $data = json_decode($temp);
+        }
+        $obj = $data[0];
+        $header = json_decode(json_encode($obj),true);
+        $arr = $data[1];
+        try{
+            $post = $model->insertPemesanan($header);
+            $id = $model->getLastId();
+            foreach($arr as $i => $item) {
+                $item->id_pmsn = $id;
+            }
+
+            
+            $postDetail = $model->insertBatchDetailPemesanan($arr);
+            $response = [
+                'success'   => true,
+                'data'  => getType($header),
+                'messages' => 'success'
+            ];
+        } catch(\Exception $e) {
+            $response = [
+                'success'   => false,
+                'data'  => $e->getMessage(),
+                'messages' => 'failed'
+            ];
+        }
+        
+        // return $this->respond($response, 200);
+        return $this->respond($response, 200);;
     }
 
     // create a product
@@ -100,11 +153,11 @@ class PemesananAPI extends ResourceController
             // });
             // array_walk($detail, array($this ,'_handle'), array('id_pmsn'=>77));
             foreach($detail as $i => $item) {
-                $detail[$i]['id_pmsn'] = $id;
+                $detail[$i]['id_pmsn'] = 77;
             }
 
             
-            // $postDetail = $model->insertBatchDetailPemesanan($detail);
+            $postDetail = $model->insertBatchDetailPemesanan($detail);
             $response = [
                 'success'   => true,
                 'data'  => $detail,
