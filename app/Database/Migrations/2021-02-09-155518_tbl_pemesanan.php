@@ -6,6 +6,9 @@ class TblPemesanan extends Migration
 {
 	public function up()
 	{
+
+		//id_pmsn	id_admin	id_plgn	id_tmpt	waktu_pmsn	waktu_dtg	waktu_byr	status_pemesanan	total_harga
+
 		$this->db->enableForeignKeyChecks();
 		$this->forge->addField([
 			'id_pmsn'				=> [
@@ -21,12 +24,6 @@ class TblPemesanan extends Migration
 				'null'				=> TRUE
 			],
 			'id_plgn'				=> [
-				'type'           	=> 'BIGINT',
-				'constraint'     	=> 20,
-				'unsigned'       	=> TRUE,
-				'null'				=> TRUE
-			],
-			'id_menu'			 	=> [
 				'type'           	=> 'BIGINT',
 				'constraint'     	=> 20,
 				'unsigned'       	=> TRUE,
@@ -49,10 +46,6 @@ class TblPemesanan extends Migration
 				'type'           	=> 'DATETIME',
 				'null'				=> TRUE
 			],
-			'jumlah_pesan' 			=> [
-				'type'           	=> 'INT',
-				'constraint'     	=> '5',
-			],
 			'status_pemesanan' 		=> [
 				'type'           	=> 'ENUM',
 				'constraint' 		=> "'Menunggu_Verifikasi','Proses_Pembuatan','Selesai'",
@@ -64,7 +57,6 @@ class TblPemesanan extends Migration
 			],
 		]);
 		$this->forge->addKey('id_pmsn', TRUE);
-		$this->forge->addForeignKey('id_menu','tbl_Menu','id_menu','CASCADE','CASCADE');
 		$this->forge->addForeignKey('id_admin','tbl_Admin','id_admin','CASCADE','CASCADE');
 		$this->forge->addForeignKey('id_plgn','tbl_Pelanggan','id_plgn','CASCADE','CASCADE');
 		$this->forge->addForeignKey('id_tmpt','tbl_Tempat','id_tmpt','CASCADE','CASCADE');

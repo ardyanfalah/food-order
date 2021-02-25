@@ -3,9 +3,11 @@ use CodeIgniter\Model;
  
 class Pemesanan_model extends Model
 {
-    protected $table = 'tbl_Pemesanan';
+    protected $table = 'tbl_pemesanan';
     protected $primaryKey = 'id_pmsn';
-     
+    protected $tableDetail = 'tbl_detail_pemesanan';
+    protected $primaryKeyDetail = 'id_detail_pemesanan';
+
     public function getPemesanan($id = false)
     {
         // $query = $this->db->query(
@@ -16,25 +18,25 @@ class Pemesanan_model extends Model
         //     INNER join tbl_menu on tbl_menu.Id_Menu = trans.Id_Menu"
         // );
 
-        if($id === false){
-            // return $query->getResultArray();
-            return $this->table('tbl_Pemesanan')
-                        ->select('tbl_Admin.nama_admin, tbl_Admin.no_hp ,tbl_Pelanggan.nama_plgn, tbl_Pelanggan.no_hp, tbl_Menu.nama_menu, tbl_Menu.harga_menu, tbl_Pemesanan.*')
-                        ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
-                        ->join('tbl_Pelanggan', 'tbl_Pelanggan.id_plgn = tbl_Pelanggan.id_plgn','INNER')
-                        ->join('tbl_Menu', 'tbl_Menu.id_menu = tbl_Pemesanan.id_menu','INNER')
-                        ->get()
-                        ->getResultArray();
-        } else {
-            return $this->table('tbl_Pemesanan')
-                        ->select('tbl_Admin.nama_admin, tbl_Admin.no_hp ,tbl_Pelanggan.nama_plgn, tbl_Pelanggan.no_hp, tbl_Menu.nama_menu, tbl_Menu.harga_menu, tbl_Pemesanan.*')
-                        ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
-                        ->join('tbl_Pelanggan', 'tbl_Pelanggan.id_plgn = tbl_Pelanggan.id_plgn','INNER')
-                        ->join('tbl_Menu', 'tbl_Menu.id_menu = tbl_Pemesanan.id_menu','INNER')
-                        ->where('tbl_Pemesanan.id_pmsn', $id)
-                        ->get()
-                        ->getRowArray();
-        }  
+        // if($id === false){
+        //     // return $query->getResultArray();
+            // return $this->table('tbl_Pemesanan')
+            //             ->select('tbl_Admin.nama_admin, tbl_Admin.no_hp ,tbl_Pelanggan.nama_plgn, tbl_Pelanggan.no_hp, tbl_Menu.nama_menu, tbl_Menu.harga_menu, tbl_Pemesanan.*')
+            //             ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
+            //             ->join('tbl_Pelanggan', 'tbl_Pelanggan.id_plgn = tbl_Pelanggan.id_plgn','INNER')
+            //             ->join('tbl_Menu', 'tbl_Menu.id_menu = tbl_Pemesanan.id_menu','INNER')
+            //             ->get()
+            //             ->getResultArray();
+        // } else {
+        //     return $this->table('tbl_Pemesanan')
+        //                 ->select('tbl_Admin.nama_admin, tbl_Admin.no_hp ,tbl_Pelanggan.nama_plgn, tbl_Pelanggan.no_hp, tbl_Menu.nama_menu, tbl_Menu.harga_menu, tbl_Pemesanan.*')
+        //                 ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
+        //                 ->join('tbl_Pelanggan', 'tbl_Pelanggan.id_plgn = tbl_Pelanggan.id_plgn','INNER')
+        //                 ->join('tbl_Menu', 'tbl_Menu.id_menu = tbl_Pemesanan.id_menu','INNER')
+        //                 ->where('tbl_Pemesanan.id_pmsn', $id)
+        //                 ->get()
+        //                 ->getRowArray();
+        // }  
 
         if($id === false){
             return $this->findAll();
@@ -45,10 +47,27 @@ class Pemesanan_model extends Model
 
     public function insertPemesanan($data)
     {
-        return $this->db->table($this->table)->insert($data);
+        $this->db->table($this->table)->insert($data);
+        return $this->db->insertID();
     }
 
     public function insertBatchPemesanan($data){
         return $this->db->table($this->table)->insertBatch($data); 
     }
+    public function insertBatchDetailPemesanan($data){
+        return $this->db->table($this->tableDetail)->insertBatch($data); 
+    }
+    public function getNextId(){
+        $query = $this->db->query(
+            "SELECT AUTO_INCREMENT
+            FROM information_schema.TABLES
+            WHERE TABLE_NAME = 'tbl_Pemesanan'"
+        );
+        return $query->getRowArray();
+    }
+
+    public function getLastId(){
+        return $this->db->insertID();
+    }
+
 }

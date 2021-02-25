@@ -34,6 +34,12 @@
                         <p>Daftar Transaksi</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="<?php echo base_url('/category'); ?>" class="nav-link">
+                        <i class="nav-icon fas fa-tags"></i>
+                        <p>Daftar Kategori</p>
+                    </a>
+                </li>
                 <!-- <li class="nav-item">
                     <a href="<?php echo base_url('category'); ?>" class="nav-link">
                         <i class="nav-icon fas fa-tags"></i>

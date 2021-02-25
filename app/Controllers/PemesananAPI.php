@@ -47,50 +47,83 @@ class PemesananAPI extends ResourceController
         }
     }
  
-    public function test(){
-        
-        $data = [
-            'Id_Trx'          => 0,
-            'Id_Admin'         => $this->request->getPost('Id_Admin'),
-            'Id_Pelanggan'           => $this->request->getPost('Id_Pelanggan'),
-            'Id_Menu'        => $this->request->getPost('Id_Menu'),
-            'Jumlah_Makanan'         => $this->request->getPost('Jumlah_Makanan'),
-            'Harga_Menu'         => $this->request->getPost('Harga_Menu'),
-            'Tanggal_Trx'   => $this->request->getPost('Tanggal_Trx'),
-        ];
-
+    public function testCheck(){
+        $model = new Pemesanan_model();
+        // $id = $model->getNextId();
+        $myJson = file_get_contents("php://input");
+        $data = json_decode($myJson);
+        $tempheader =json_encode($data[0]);
+        $header=json_decode($tempheader,true);
+        $tempdetail =json_encode($data[1]);
+        $detail=json_decode($tempdetail,true);
         $response = [
             'success'   => true,
-            'data'  => $data,
-            'messages' => 'failed'
+            'data'  => $header,
+            'messages' => 'success'
         ];
         return $this->respond($response, 200);
     }
 
-
     // create a product
     public function create()
     {
+        // $model = new Pemesanan_model();
+        // $myJson = file_get_contents("php://input");
+        // $myArray = json_decode($myJson, true);
+        // try{
+        //     $data = $model->insertBatch($myArray);
+        //     $response = [
+        //         'success'   => true,
+        //         'data'  => null,
+        //         'messages' => 'success'
+        //     ];
+        // } catch (\Exception $e) {
+        //     $response = [
+        //         'success'   => false,
+        //         'data'  => $e->getMessage(),
+        //         'messages' => 'failed'
+        //     ];
+        // }
+        // return $this->respond($response, 200);
         $model = new Pemesanan_model();
         $myJson = file_get_contents("php://input");
-        $myArray = json_decode($myJson, true);
+        $data = json_decode($myJson);
+        $tempheader =json_encode($data[0],true);
+        $header=json_decode($tempheader,true);
+        $tempdetail =json_encode($data[1]);
+        $detail=json_decode($tempdetail,true);
         try{
-            $data = $model->insertBatch($myArray);
+            $post = $model->insertPemesanan($header);
+            $id = $model->getLastId();
+            // array_walk ( $detail, function (&$key) { 
+            //     $key["id_pmsn"] = $id; 
+            // });
+            // array_walk($detail, array($this ,'_handle'), array('id_pmsn'=>77));
+            foreach($detail as $i => $item) {
+                $detail[$i]['id_pmsn'] = $id;
+            }
+
+            
+            // $postDetail = $model->insertBatchDetailPemesanan($detail);
             $response = [
                 'success'   => true,
-                'data'  => null,
+                'data'  => $detail,
                 'messages' => 'success'
             ];
-        } catch (\Exception $e) {
+        } catch(\Exception $e) {
             $response = [
                 'success'   => false,
                 'data'  => $e->getMessage(),
                 'messages' => 'failed'
             ];
         }
-        return $this->respond($response, 200);
+        
+        // return $this->respond($response, 200);
+        return $this->respond($response, 200);;
     }
- 
+    function _handle($detail, $data){
+        $key["id_pmsn"] = $data['id_pmsn']; 
+    }
     // update product
     public function update($id = null)
     {
@@ -139,7 +172,6 @@ class PemesananAPI extends ResourceController
         }else{
             return $this->failNotFound('No Data Found with id '.$id);
         }
-         
     }
  
 }

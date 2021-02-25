@@ -36,6 +36,8 @@ $routes->resource('KategoriAPI');
 $routes->resource('PelangganAPI');
 $routes->resource('TempatAPI');
 $routes->resource('MenuAPI');
+// $routes->get('PemesananAPI/testCheck', 'PemesananAPI::testCheck');
+$routes->post('PemesananAPI/testCheck', 'PemesananAPI::testCheck');
 $routes->resource('PemesananAPI');
 $routes->resource('RatingAPI');
 $routes->get('/', 'Dashboard::index');
