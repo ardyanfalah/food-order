@@ -6,14 +6,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Categories</h1>
+                    <h1 class="m-0 text-dark">Kategori</h1>
                 </div>
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active">Categories</li>
                     </ol>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -24,8 +24,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            List Category
-                            <a href="<?php echo base_url('category/create'); ?>" class="btn btn-primary float-right">Tambah</a>
+                            Daftar Kategori
+                            <a href="<?php echo base_url('category/create'); ?>" class="btn btn-primary float-right">Tambah Kategori</a>
                         </div>
                         <div class="card-body">
                         
@@ -53,9 +53,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Name</th>
+                                            <th>Nama Kategori</th>
                                             <th>Status</th>
-                                            <th>Action</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -64,7 +64,7 @@
                                             <td><?php echo $key + 1; ?></td>
                                             <td><?php echo $row['nama_ktgr']; ?></td>
                                             <td><?php echo $row['status_ktgr']; ?></td>
-                                            <td>
+                                            <td class="text-center">
                                                 <div class="btn-group">
                                                     <a href="<?php echo base_url('category/edit/'.$row['id_ktgr']); ?>" class="btn btn-sm btn-success">
                                                         <i class="fa fa-edit"></i>

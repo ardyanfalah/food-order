@@ -6,14 +6,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Products</h1>
+                    <h1 class="m-0 text-dark">Menu</h1>
                 </div>
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active">Products</li>
                     </ol>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -24,8 +24,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            List Product
-                            <a href="<?php echo base_url('product/create'); ?>" class="btn btn-primary float-right">Tambah</a>
+                            Daftar Menu
+                            <a href="<?php echo base_url('product/create'); ?>" class="btn btn-primary float-right">Tambah Menu</a>
                         </div>
                         <div class="card-body">
                         
@@ -59,14 +59,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                     <?php 
-                                        echo form_label('Search');
+                                        echo form_label('Cari Menu');
                                         $form_keyword = [
                                             'type'  => 'text',
                                             'name'  => 'keyword',
                                             'id'    => 'keyword',
                                             'value' => $keyword,
                                             'class' => 'form-control',
-                                            'placeholder' => 'Enter keyword ...'
+                                            'placeholder' => 'Masukan kata kunci ...'
                                         ];
                                         echo form_input($form_keyword);
                                     ?>
@@ -78,10 +78,10 @@
                                     <thead>
                                         <tr>
                                             <th width="10px" class="text-center">No</th>
-                                            <th>Thumbnail</th>
-                                            <th>Name</th>
-                                            <th>Category</th>
-                                            <th>Price</th>
+                                            <th>Gambar</th>
+                                            <th>Nama Menu</th>
+                                            <th>Kategori</th>
+                                            <th>Harga</th>
                                             <th>Status</th>
                                             <th class="text-center">Action</th>
                                         </tr>

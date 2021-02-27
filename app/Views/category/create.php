@@ -6,14 +6,14 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Create Category</h1>
+          <h1 class="m-0 text-dark">Tambah Kategori</h1>
         </div>
-        <div class="col-sm-6">
+        <!-- <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Create Category</li>
+            <li class="breadcrumb-item active">Buat Kategori</li>
           </ol>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
                   $errors = session()->getFlashdata('errors');
                   if(!empty($errors)){ ?>
                   <div class="alert alert-danger" role="alert">
-                    Whoops! Ada kesalahan saat input data, yaitu:
+                    Ada kesalahan saat input data, yaitu:
                     <ul>
                     <?php foreach ($errors as $error) : ?>
                         <li><?= esc($error) ?></li>
@@ -40,21 +40,24 @@
                   <?php } ?>
 
                   <div class="form-group">
-                      <label for="">Name</label>
-                      <input type="text" class="form-control" name="nama_ktgr" placeholder="Enter category name" value="<?php echo $inputs['nama_ktgr']; ?>">
+                      <label for="">Nama Kategori</label>
+                      <input type="text" class="form-control" name="nama_ktgr" placeholder="Masukan nama kategori" value="<?php echo $inputs['nama_ktgr']; ?>">
                   </div>
                   <div class="form-group">
                       <label for="">Status</label>
-                      <select name="status_ktgr" id="" class="form-control">
-                          <option value="">Pilih Kategori</option>
+                      <select name="status_ktgr" placeholder="Pilih status" id="" class="form-control">
+                          <!-- <option value="">Pilih status</option> -->
                           <option <?php echo $inputs['status_ktgr'] == "Active" ? "selected" : ""; ?> value="Active">Active</option>
                           <option <?php echo $inputs['status_ktgr'] == "Inactive" ? "selected" : ""; ?> value="Inactive">Inactive</option>
                       </select>
                   </div>
                 </div>
-                <div class="card-footer">
-                    <a href="<?php echo base_url('category'); ?>" class="btn btn-outline-info">Back</a>
-                    <button type="submit" class="btn btn-primary float-right">Simpan</button>
+                 <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                <li class=""><a href="<?php echo base_url('category'); ?>" class="btn btn-outline-info">Kembali</a></li>
+                &nbsp;&nbsp;&nbsp;
+                <li class=""> <button type="submit" class="btn btn-primary float-right">Simpan</button></li>
+                </ol>
                 </div>
               </div>
             </form>

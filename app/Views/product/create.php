@@ -8,12 +8,12 @@
         <div class="col-sm-6">
           <h1 class="m-0 text-dark">Tambah Menu</h1>
         </div>
-        <div class="col-sm-6">
+        <!-- <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item active">Tambah Menu</li>
           </ol>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
             $errors = session()->getFlashdata('errors');
             if(!empty($errors)){ ?>
             <div class="alert alert-danger" role="alert">
-              Whoops! Ada kesalahan saat input data, yaitu:
+              Ada kesalahan saat input data, yaitu:
               <ul>
               <?php foreach ($errors as $error) : ?>
                   <li><?= esc($error) ?></li>
@@ -41,7 +41,7 @@
                 <div class="col-md-6">
                   <div class="form-group"> 
                     <?php 
-                      echo form_label('Category', 'Category');
+                      echo form_label('Kategori', 'Kategori');
                       echo form_dropdown('id_ktgr', $categories, $inputs['id_ktgr'], ['class' => 'form-control']); 
                       // echo form_label('Jenis');
                       // $jenis_menu = [
@@ -57,7 +57,7 @@
                   </div>
                   <div class="form-group">
                     <?php 
-                      echo form_label('Nama');
+                      echo form_label('Nama Menu');
                       $nama_menu = [
                         'type'  => 'text',
                         'name'  => 'nama_menu',
@@ -93,38 +93,44 @@
                   </div>
                   <div class="form-group">
                     <?php 
-                      echo form_label('Image');
+                      echo form_label('Gambar');
                       echo form_upload('gambar_menu', '', ['class' => 'form-control']); 
                     ?>
                   </div>
                 </div>
-                </div>
-              </div>
-              <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
                     <?php 
-                      echo form_label('Description'); 
+                      echo form_label('Deskripsi'); 
                       $deskripsi_menu = [
                         'type'  => 'text',
                         'name'  => 'deskripsi_menu',
                         'id'    => 'deskripsi_menu',
                         'value' => $inputs['deskripsi_menu'],
                         'class' => 'form-control',
-                        'placeholder' => 'Product Description'
+                        'placeholder' => 'Masukan deskripsi menu'
                       ];
                       echo form_textarea($deskripsi_menu);
                     ?>
                   </div>
                 </div>
+                </div>
+                <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                <li class=""><a href="<?php echo base_url('product'); ?>" class="btn btn-outline-info">Kembali</a></li>
+                &nbsp;&nbsp;&nbsp;
+                <li class=""> <button type="submit" class="btn btn-primary float-right">Simpan</button></li>
+                </ol>
+                </div>
               </div>
+              <?php echo form_close(); ?>
+              <!-- <div class="row"> -->
+               
+              <!-- </div> -->
             </div>
-            <div class="card-footer">
-                <a href="<?php echo base_url('product'); ?>" class="btn btn-outline-info">Back</a>
-                <button type="submit" class="btn btn-primary float-right">Simpan</button>
-            </div>
+         
           </div>
-          <?php echo form_close(); ?>
+         
         </div>
       </div>
     </div>

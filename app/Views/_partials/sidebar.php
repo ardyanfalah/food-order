@@ -2,7 +2,7 @@
     <a href="<?php echo base_url('/'); ?>" class="brand-link">
       <img src="<?php echo base_url('themes/dist'); ?>/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Akaci</span>
+      <span class="brand-text font-weight-light">AKACI</span>
     </a>
 
     <div class="sidebar">
@@ -25,19 +25,19 @@
                 <li class="nav-item">
                     <a href="<?php echo base_url('/product'); ?>" class="nav-link">
                         <i class="nav-icon fa fa-coffee"></i>
-                        <p>Daftar Menu</p>
+                        <p>Menu</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo base_url('/transaction'); ?>" class="nav-link">
                         <i class="nav-icon fa fa-list-alt"></i>
-                        <p>Daftar Transaksi</p>
+                        <p>Transaksi</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo base_url('/category'); ?>" class="nav-link">
                         <i class="nav-icon fas fa-tags"></i>
-                        <p>Daftar Kategori</p>
+                        <p> Kategori</p>
                     </a>
                 </li>
                 <!-- <li class="nav-item">

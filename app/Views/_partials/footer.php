@@ -15,9 +15,9 @@ foreach($grafik as $data){
 
 <footer class="main-footer">
     <div class="float-right d-none d-sm-inline">
-        Sistem Pemesanan
+        Sistem Pemesanan Makanan & Tempat
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="<?php echo base_url('/'); ?>">AKACI</a>.</strong> All rights reserved.
+    <a href="<?php echo base_url('/'); ?>">AKACI</a>
 </footer>
 </div>
 <script src="<?php echo base_url('themes/plugins'); ?>/jquery/jquery.min.js"></script>
