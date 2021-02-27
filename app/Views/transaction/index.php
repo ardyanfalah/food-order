@@ -83,10 +83,9 @@
                                             <th>Waktu Pesan</th>
                                             <th>Waktu Datang</th>
                                             <th>Waktu Bayar</th>
-                                            <th>Menu</th>
-                                            <th>Jumlah</th>
                                             <th>Status</th>
                                             <th>Harga Total</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -99,11 +98,15 @@
                                             <td><?php echo $row['waktu_pmsn']; ?></td>
                                             <td><?php echo $row['waktu_dtg']; ?></td>
                                             <td><?php echo $row['waktu_byr']; ?></td>
-                                            <td><?php echo $row['nama_menu']; ?></td>
-                                            <td><?php echo $row['jumlah_pesan']; ?></td>
                                             <td><?php echo $row['status_pemesanan']; ?></td>
                                             <td><?php echo $row['total_harga']; ?></td>
-
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="<?php echo base_url('transaction/edit/'.$row['id_pmsn']); ?>" class="btn btn-sm btn-success">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
                                         </tr>
                                         <?php } ?>
                                     </tbody>

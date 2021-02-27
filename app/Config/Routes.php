@@ -66,7 +66,7 @@ $routes->get('category', 'Kategori::index');
 $routes->get('category/create', 'Kategori::create');
 $routes->post('category/store', 'Kategori::store');
 $routes->get('category/edit/(:num)', 'Kategori::edit/$1');
-$routes->post('category/update/(:num)', 'Kategori::update/$1');
+$routes->post('category/update', 'Kategori::update');
 $routes->get('category/delete/(:num)', 'Kategori::delete/$1');
 
 // $routes->get('product', 'Product::index');
@@ -94,6 +94,8 @@ $routes->get('product/delete/(:num)', 'Menu::delete/$1');
 $routes->resource('TransactionAPI');
 $routes->get('transaction', 'Transaction::index');
 $routes->get('transaction/import', 'Transaction::import');
+$routes->get('transaction/edit/(:num)', 'Transaction::edit/$1');
+$routes->post('transaction/update', 'Transaction::update');
 $routes->post('transaction/proses_import', 'Transaction::proses_import');
 $routes->get('transaction/export', 'Transaction::export');
 

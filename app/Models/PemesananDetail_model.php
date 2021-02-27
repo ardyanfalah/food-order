@@ -8,13 +8,6 @@ class PemesananDetail_model extends Model
 
     public function getDetailPemesanan($id = false)
     {
-        // $query = $this->db->query(
-        //     "SELECT trans.*, user1.Nama as nama_admin, user2.Nama as nama_pelanggan, tbl_menu.Nama_Menu 
-        //     FROM tbl_transaksi trans 
-        //     inner join tbl_user user1 on trans.Id_Admin = user1.Id 
-        //     inner join tbl_user user2 on trans.Id_Pelanggan = user2.Id 
-        //     INNER join tbl_menu on tbl_menu.Id_Menu = trans.Id_Menu"
-        // );
 
         if($id === false){
             // return $query->getResultArray();
@@ -32,11 +25,21 @@ class PemesananDetail_model extends Model
                         ->getRowArray();
         }  
 
-        // if($id === false){
-        //     return $this->findAll();
-        // } else {
-        //     return $this->getWhere(['id_detail_pmsn' => $id]);
-        // }  
+    }
+
+    public function getDetailByPemesanan($idPemesanan = false){
+        $query = $this->db->query("SELECT tbl_detail_pemesanan.*, tbl_Menu.nama_menu, tbl_Menu.harga_menu, tbl_detail_pemesanan.jumlah_pesan * tbl_Menu.harga_menu as jumlah_harga_pesan
+        FROM tbl_detail_pemesanan
+        INNER JOIN tbl_menu on tbl_menu.id_menu = tbl_detail_pemesanan.id_menu
+        WHERE tbl_detail_pemesanan.id_pmsn = '$idPemesanan'
+        ;");
+        return $query->getResultArray();
+        // return $this->table('tbl_detail_pemesanan')
+        //             ->select('tbl_detail_pemesanan.*, tbl_Menu.nama_menu, tbl_Menu.harga_menu, tbl_detail_pemesanan.jumlah_pesan * tbl_Menu.harga_menu jumlah_harga_pesan')
+        //             ->join('tbl_Menu', 'tbl_Menu.id_menu = tbl_detail_pemesanan.id_menu','INNER')
+        //             ->where('tbl_detail_pemesanan.id_pmsn', $idPemesanan)
+        //             ->get()
+        //             ->getRowArray();
     }
 
     public function insertDetailPemesanan($data)

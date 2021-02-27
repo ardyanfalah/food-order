@@ -39,32 +39,35 @@
             <?php echo form_open_multipart('product/update'); ?>
               <div class="card-header">Form Edit Produk</div>
               <div class="card-body">
-                <?php echo form_hidden('Id_Menu', $product['Id_Menu']); ?>
+                <?php echo form_hidden('id_menu', $product['id_menu']); ?>
+                <?php //echo $product['id_menu'] ?>
+
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <?php echo form_label('Image', 'Image'); ?>
                       <br>
-                      <img src="<?php echo base_url('uploads/'.$product['Image_Menu']) ?>" class="img-fluid">
+                      <img src="<?php echo base_url('uploads/'.$product['gambar_menu']) ?>" class="img-fluid">
                       <br>
                       <br>
                       <?php echo form_label('Ganti Image', 'Ganti Image'); ?>
-                      <?php echo form_upload('Image_Menu', $product['Image_Menu']); ?>
+                      <?php echo form_upload('gambar_menu', $product['gambar_menu']); ?>
                     </div>
                   </div>
                   <div class="col-md-8">
                     <div class="form-group"> 
                       <?php echo form_label('Jenis', 'Jenis'); ?>
                       <?php //echo form_dropdown('category_id', $categories, $product['category_id'], ['class' => 'form-control']); ?>
-                      <?php echo form_input('Jenis_Menu', $product['Jenis_Menu'], ['class' => 'form-control', 'placeholder' => 'Jenis Menu']); ?>
+                      <?php echo form_dropdown('id_ktgr', $categories, $product['id_ktgr'], ['class' => 'form-control']); ?>
+                      <?php //echo form_input('Jenis_Menu', $product['Jenis_Menu'], ['class' => 'form-control', 'placeholder' => 'Jenis Menu']); ?>
                     </div>
                     <div class="form-group">
                       <?php echo form_label('Nama', 'Nama'); ?>
-                      <?php echo form_input('Nama_Menu', $product['Nama_Menu'], ['class' => 'form-control', 'placeholder' => 'Nama']); ?>
+                      <?php echo form_input('nama_menu', $product['nama_menu'], ['class' => 'form-control', 'placeholder' => 'Nama']); ?>
                     </div>
                     <div class="form-group">
                       <?php echo form_label('Harga', 'Harga'); ?>
-                      <?php echo form_input('Harga_Menu', $product['Harga_Menu'], ['class' => 'form-control', 'placeholder' => 'Harga_Menu', 'type' => 'number']); ?>
+                      <?php echo form_input('harga_menu', $product['harga_menu'], ['class' => 'form-control', 'placeholder' => 'harga_menu', 'type' => 'number']); ?>
                     </div>
                   </div>
                 </div>
@@ -72,11 +75,11 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <?php echo form_label('Status', 'Status'); ?>
-                      <?php echo form_dropdown('Status_Menu', ['' => 'Pilih', 'Active' => 'Active', 'Inactive' => 'Inactieve'], $product['Status_Menu'], ['class' => 'form-control']); ?>
+                      <?php echo form_dropdown('status_Menu', ['' => 'Pilih', 'Active' => 'Active', 'Inactive' => 'Inactieve'], $product['status_Menu'], ['class' => 'form-control']); ?>
                     </div>
                     <div class="form-group">
                       <?php echo form_label('Deskripsi', 'Deskripsi'); ?>
-                      <?php echo form_textarea('Deskripsi_Menu', $product['Deskripsi_Menu'], ['class' => 'form-control', 'placeholder' => 'Deskripsi']); ?>
+                      <?php echo form_textarea('deskripsi_menu', $product['deskripsi_menu'], ['class' => 'form-control', 'placeholder' => 'Deskripsi']); ?>
                     </div>
                   </div>
                 </div>

@@ -26,20 +26,20 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-4">
-                  <img src="<?php echo base_url('uploads/'.$product['Image_Menu']) ?>" class="img-fluid">
+                  <img src="<?php echo base_url('uploads/'.$product['gambar_menu']) ?>" class="img-fluid">
                 </div>
                 <div class="col-md-8">
                   <dl class="dl-horizontal">
                     <dt>Jenis Menu</dt>
-                    <dd><?php echo $product['Jenis_Menu']; ?></dd>
+                    <dd><?php echo $product['nama_ktgr']; ?></dd>
                     <dt>Nama </dt>
-                    <dd><?php echo $product['Nama_Menu']; ?></dd>
+                    <dd><?php echo $product['nama_menu']; ?></dd>
                     <dt>Harga </dt>
-                    <dd><?php echo 'Rp. '.number_format($product['Harga_Menu']); ?></dd>		
+                    <dd><?php echo 'Rp. '.number_format($product['harga_menu']); ?></dd>		
                     <dt>Status </dt>
-                    <dd><?php echo $product['Status_Menu']; ?></dd>	   
+                    <dd><?php echo $product['status_Menu']; ?></dd>	   
                     <dt>Deskripsi </dt>
-                    <dd><?php echo $product['Deskripsi_Menu']; ?></dd>             
+                    <dd><?php echo $product['deskripsi_menu']; ?></dd>             
                   </dl>
                 </div>
               </div>
