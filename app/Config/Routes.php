@@ -94,6 +94,8 @@ $routes->get('product/delete/(:num)', 'Menu::delete/$1');
 $routes->resource('TransactionAPI');
 $routes->get('transaction', 'Transaction::index');
 $routes->get('transaction/import', 'Transaction::import');
+$routes->get('transaction/edit/(:num)', 'Transaction::edit/$1');
+$routes->post('transaction/update', 'Transaction::update');
 $routes->post('transaction/proses_import', 'Transaction::proses_import');
 $routes->get('transaction/export', 'Transaction::export');
 

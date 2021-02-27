@@ -138,7 +138,7 @@ class Menu extends Controller
  
     public function show($id)
     {  
-        $data['product'] = $this->menu_model->getProduct($id);
+        $data['product'] = $this->menu_model->getMenu($id);
         echo view('product/show', $data);
     }
     
@@ -147,7 +147,7 @@ class Menu extends Controller
         $categories = $this->kategori_model ->where('status_ktgr', 'Active')->findAll();
         $data['categories'] = ['' => 'Pilih Category'] + array_column($categories, 'nama_ktgr', 'id_ktgr');
 
-        $data['product'] = $this->menu_model->getProduct($id);
+        $data['product'] = $this->menu_model->getMenu($id);
         echo view('product/edit', $data);
     }
 

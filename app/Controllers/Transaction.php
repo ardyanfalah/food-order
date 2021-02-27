@@ -5,6 +5,7 @@ use App\Models\Transaction_model;
 use App\Models\Menu_model;
 use App\Models\Product_model;
 use App\Models\Pemesanan_model;
+use App\Models\PemesananDetail_model;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -18,6 +19,8 @@ class Transaction extends Controller
         helper(['form']);
         $this->pemesanan_model = new Pemesanan_model();
         $this->menu_model = new Menu_model();
+        $this->pemesanan_detail_model = new PemesananDetail_model();
+
     }
 
     public function index()
@@ -29,6 +32,28 @@ class Transaction extends Controller
     public function import()
     {
         echo view('transaction/import');
+    }
+
+    public function edit($id){
+        $data['details'] =  $this->pemesanan_detail_model->getDetailByPemesanan($id);
+        $data['transaction'] = $this->pemesanan_model->getPemesanan($id);
+        echo view('transaction/edit', $data);
+    }
+
+    public function update(){
+        $id = $this->request->getPost('id_pmsn');
+        $data = $this->request->getPost('status_pemesanan');
+
+        try{
+            $this->pemesanan_model->updateStatusPemesanan($id,$data);
+            session()->setFlashdata('info', 'Updated Product successfully');
+            var_dump("sukses");
+        } catch(\Exception $e) {
+            var_dump($e->getMessage());
+            session()->setFlashdata('info', 'Updated Product Failed');
+            session()->setFlashdata('errors', $e->getMessage());
+        }
+        return redirect()->to(base_url('transaction/edit/'.$id));
     }
 
     public function proses_import()
