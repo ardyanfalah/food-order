@@ -25,10 +25,20 @@ class Rating_model extends Model
                     ->getResultArray();
         
     }
+
+    public function getHighestRating(){
+        $query = $this->db->query(
+            "SELECT tbl_menu.*, AVG(tbl_rating.nilai) as rating 
+            from tbl_rating, tbl_menu 
+            where tbl_rating.id_menu = tbl_menu.id_menu 
+            group by tbl_rating.id_menu order by rating DESC limit 5"
+        );
+        return $query->getResultArray();
+    }
  
     public function insertRating($data)
     {
-        return $this->db->table($this->table)->insert($data);
+        return $this->db->table($this->table)->insertBatch($data);
     }
 
     public function updateRating($data, $id)

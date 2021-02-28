@@ -3,6 +3,7 @@
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\Pemesanan_model;
+use App\Models\PemesananDetail_model;
  
 class PemesananAPI extends ResourceController
 {
@@ -11,11 +12,14 @@ class PemesananAPI extends ResourceController
     public function index()
     {
         $model = new Pemesanan_model();
+        $modelDetail = new PemesananDetail_model();
         
-        $data = $model->getPemesanan();
         try
         {
             $data = $model->getPemesanan();
+            foreach($data as $i => $item) {
+                $data[$i]["menu"] = $modelDetail->getDetailByPemesanan($data[$i]["id_pmsn"]);
+            }
             $response = [
                 'success'   => true,
                 'data'  => $data,
@@ -46,7 +50,22 @@ class PemesananAPI extends ResourceController
             return $this->failNotFound('No Data Found with id '.$id);
         }
     }
- 
+
+    public function test(){
+        $model = new Pemesanan_model();
+        $modelDetail = new PemesananDetail_model();
+        $dataPemesanan = $model->getPemesanan();
+        foreach($dataPemesanan as $i => $item) {
+            $dataPemesanan[$i]["menu"] = $modelDetail->getDetailByPemesanan($dataPemesanan[$i]["id_pmsn"]);
+        }
+        $response = [
+            'success'   => true,
+            'data'  => $dataPemesanan,
+            'messages' => 'success'
+        ];
+        return $this->respond($response, 200);
+    }
+    
     public function testCheck(){
         $model = new Pemesanan_model();
         $myJson = file_get_contents("php://input");
@@ -58,18 +77,19 @@ class PemesananAPI extends ResourceController
         }
         $obj = $data[0];
         $arr = $data[1];
+        $obj->menu = $arr;
         try{
-            foreach($arr as $i => $item) {
-                $item->id_pmsn = 77;
-            }
+            // foreach($arr as $i => $item) {
+            //     $item->id_pmsn = 77;
+            // }
             $response = [
                 'success'   => true,
-                'data'  => json_encode($data),
+                'data'  => $data,
                 'messages' => 'success'
             ];
         } catch(\Exception $e){
             $response = [
-                'success'   => true,
+                'success'   => false,
                 'data'  => $e->getMessage(),
                 'messages' => 'success'
             ];

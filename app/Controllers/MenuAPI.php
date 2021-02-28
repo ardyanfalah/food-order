@@ -11,7 +11,7 @@ class MenuAPI extends ResourceController
     public function index()
     {
         $model = new Menu_model();
-        $data = $model->findAll();
+        $data = $model->getMenu();
         $response = [
             'success'   => true,
             'data'  => $data,

@@ -8,12 +8,19 @@ class Menu_model extends Model
     public function getMenu($id = false)
     {
         if($id === false){
+            $query = $this->db->query(
+                "SELECT tbl_menu.*, IFNULL(AVG(tbl_rating.nilai), 0)  as rating 
+                from tbl_menu
+                LEFT JOIN tbl_rating ON tbl_rating.id_menu = tbl_menu.id_menu
+                group by tbl_menu.id_menu order by rating DESC"
+            );
+            return $query->getResultArray();
             // return $this->findAll();
-            return $this->table('tbl_Menu')
-                        ->select('tbl_Menu.*, tbl_Kategori.nama_ktgr')
-                        ->join('tbl_Kategori', 'tbl_Kategori.id_ktgr = tbl_Menu.id_ktgr','INNER')
-                        ->get()
-                        ->getRowArray();
+            // return $this->table('tbl_Menu')
+            //             ->select('tbl_Menu.*, tbl_Kategori.nama_ktgr')
+            //             ->join('tbl_Kategori', 'tbl_Kategori.id_ktgr = tbl_Menu.id_ktgr','INNER')
+            //             ->get()
+            //             ->getRowArray();
         } else {
             // $query = $this->db->query(
             //     "SELECT *
