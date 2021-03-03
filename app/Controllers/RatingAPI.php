@@ -68,7 +68,6 @@ class RatingAPI extends ResourceController
         
         $myJson = file_get_contents("php://input");
         $data = json_decode($myJson, true);
-        $model->insertRating($data);
         
         try{
             $model->insertRating($data);
