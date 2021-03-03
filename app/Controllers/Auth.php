@@ -15,18 +15,18 @@ class Auth extends BaseController
     
     public function index()
     {
-        // if($this->cek_login() == TRUE){
-		// 	return redirect()->to(base_url('/dashboard'));
-        // }
+        if($this->cek_login() == TRUE){
+			return redirect()->to(base_url('/dashboard'));
+        }
         
         echo view('auth/login');
     }
 
     public function login()
     {
-        // if($this->cek_login() == TRUE){
-		// 	return redirect()->to(base_url('/dashboard'));
-        // }
+        if($this->cek_login() == TRUE){
+			return redirect()->to(base_url('/dashboard'));
+        }
         
         echo view('auth/login');
     }
@@ -44,24 +44,22 @@ class Auth extends BaseController
             'password' => $pass
         ]; 
       
-        
         if($validation->run($data, 'authlogin') == FALSE){
             session()->setFlashdata('errors', $validation->getErrors());
             return redirect()->to(base_url('/auth/login'));
         } else {
 
             $cek_login = $this->auth_model->cek_login($email);
-            
+
             // email didapatkan
             if($cek_login == TRUE){
 
                 // jika email dan password cocok
-                if($pass == $cek_login['Password']){
+                if($pass == $cek_login['password']){
 
-                    session()->set('email', $cek_login['Email']);
-                    session()->set('name', $cek_login['Nama']);
-                    session()->set('level', $cek_login['Level']);
-                    session()->set('status', $cek_login['Status']);
+                    session()->set('email', $cek_login['email']);
+                    session()->set('name', $cek_login['nama_admin']);
+                    session()->set('status', $cek_login['status_admin']);
                     
                     return redirect()->to(base_url('dashboard'));          
                 // email cocok, tapi password salah

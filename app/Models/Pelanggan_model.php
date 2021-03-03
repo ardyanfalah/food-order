@@ -13,6 +13,26 @@ class Pelanggan_model extends Model
             return $this->getWhere(['id_plgn' => $id]);
         }  
     }
+
+    public function cek_login($email)
+    {
+        $query = $this->table('tbl_Pelanggan')
+                ->where('email', $email)
+                ->countAll();
+
+        if($query >  0){
+            $hasil = $this->table('tbl_Pelanggan')
+                    ->where('email', $email)
+                    ->limit(1)
+                    ->get()
+                    ->getRowArray();
+        } else {
+            $hasil = array(); 
+        }
+       
+        return $hasil;
+        // return true;
+    }
  
     public function insertPelanggan($data)
     {

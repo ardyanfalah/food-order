@@ -36,12 +36,17 @@ $routes->resource('KategoriAPI');
 $routes->resource('PelangganAPI');
 $routes->resource('TempatAPI');
 $routes->resource('MenuAPI');
+
 // $routes->get('PemesananAPI/testCheck', 'PemesananAPI::testCheck');
 $routes->post('PemesananAPI/testCheck', 'PemesananAPI::testCheck');
 $routes->post('PemesananAPI/create_pemesanan', 'PemesananAPI::createPemesanan');
 $routes->get('PemesananAPI/test', 'PemesananAPI::test');
 
+$routes->post('AuthAPI/login', 'AuthAPI::login_user');
+$routes->post('AuthAPI/register', 'AuthAPI::register_user');
 
+
+$routes->resource('AuthAPI');
 $routes->resource('PemesananAPI');
 $routes->resource('PemesananDetailAPI');
 
