@@ -28,7 +28,7 @@ class PemesananDetail_model extends Model
     }
 
     public function getDetailByPemesanan($idPemesanan = false){
-        $query = $this->db->query("SELECT tbl_detail_pemesanan.*, tbl_Menu.nama_menu, tbl_Menu.harga_menu, tbl_detail_pemesanan.jumlah_pesan * tbl_Menu.harga_menu as jumlah_harga_pesan
+        $query = $this->db->query("SELECT tbl_detail_pemesanan.*, tbl_Menu.nama_menu, tbl_Menu.harga_menu, tbl_Menu.gambar_menu, tbl_detail_pemesanan.jumlah_pesan * tbl_Menu.harga_menu as jumlah_harga_pesan
         FROM tbl_detail_pemesanan
         INNER JOIN tbl_menu on tbl_menu.id_menu = tbl_detail_pemesanan.id_menu
         WHERE tbl_detail_pemesanan.id_pmsn = '$idPemesanan'

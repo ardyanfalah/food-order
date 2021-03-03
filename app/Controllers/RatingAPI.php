@@ -28,6 +28,26 @@ class RatingAPI extends ResourceController
 
         return $this->respond($response, 200);
     }
+
+    public function getHighRating(){
+        $model = new Rating_model();
+        try{
+            $data = $model->getHighestRating();
+            $response = [
+                'success'   => true,
+                'data'  => $data,
+                'messages' => 'success'
+            ];
+        } catch (\Exception $e) {
+            $response = [
+                'success'   => false,
+                'data'  => $e->getMessage(),
+                'messages' => 'failed'
+            ];
+        }
+
+        return $this->respond($response, 200);
+    }
  
     // get single product
     public function show($id = null)
@@ -48,15 +68,14 @@ class RatingAPI extends ResourceController
         
         $myJson = file_get_contents("php://input");
         $data = json_decode($myJson, true);
+        $model->insertRating($data);
         
         try{
             $model->insertRating($data);
             $response = [
-                'status'   => 201,
-                'error'    => null,
-                'messages' => [
-                    'success' => 'Data Saved'
-                ]
+                'success'   => true,
+                'data'    => "success",
+                'messages' => "success"
             ];
         } catch (\Exception $e) {
             $response = [
