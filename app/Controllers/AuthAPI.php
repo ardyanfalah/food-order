@@ -65,12 +65,16 @@ class AuthAPI extends ResourceController
         $model = new Pelanggan_model();
         
         $myJson = file_get_contents("php://input");
-        $data = json_decode($myJson, true);
-        
+        $data = json_decode($myJson,true);
+        // $response = [
+        //     'success'   => true,
+        //     'data'    => $myJson,
+        //     'messages' => 'Data Saved'
+        // ];
         try{
             $model->insertPelanggan($data);
             $response = [
-                'status'   => 201,
+                'success'   => true,
                 'error'    => null,
                 'messages' => 'Data Saved'
             ];
@@ -82,7 +86,7 @@ class AuthAPI extends ResourceController
             ];
         }
          
-        return $this->respondCreated($response, 201);
+        return $this->respond($response, 201);
     }
 
     public function create()

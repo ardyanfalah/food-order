@@ -36,7 +36,8 @@ class Transaction extends Controller
 
     public function edit($id){
         $data['details'] =  $this->pemesanan_detail_model->getDetailByPemesanan($id);
-        $data['transaction'] = $this->pemesanan_model->getPemesanan($id);
+        $temp = $this->pemesanan_model->getPemesanan($id);
+        $data['transaction'] = $temp[0];
         echo view('transaction/edit', $data);
     }
 
@@ -53,7 +54,7 @@ class Transaction extends Controller
             session()->setFlashdata('info', 'Updated Product Failed');
             session()->setFlashdata('errors', $e->getMessage());
         }
-        return redirect()->to(base_url('transaction/edit/'.$id));
+        return redirect()->to(base_url('transaction'));
     }
 
     public function proses_import()

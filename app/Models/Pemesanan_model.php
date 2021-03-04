@@ -11,15 +11,15 @@ class Pemesanan_model extends Model
     public function getPemesanan($id = false)
     {
         // $query = $this->db->query(
-        //     "SELECT trans.*, user1.Nama as nama_admin, user2.Nama as nama_pelanggan, tbl_menu.Nama_Menu 
-        //     FROM tbl_transaksi trans 
-        //     inner join tbl_user user1 on trans.Id_Admin = user1.Id 
-        //     inner join tbl_user user2 on trans.Id_Pelanggan = user2.Id 
-        //     INNER join tbl_menu on tbl_menu.Id_Menu = trans.Id_Menu"
+        //     "SELECT tbl_pemesanan.*, tbl_pelanggan.nama_plgn,tbl_admin.nama_admin
+        //     FROM `tbl_pemesanan` 
+        //     INNER JOIN tbl_admin on tbl_admin.id_admin = tbl_pemesanan.id_admin
+        //     INNER JOIN tbl_pelanggan on tbl_pelanggan.id_plgn = tbl_pemesanan.id_plgn"
         // );
+        // return $query->getResultArray();
 
         // if($id === false){
-        //     // return $query->getResultArray();
+            // return $query->getResultArray();
             // return $this->table('tbl_Pemesanan')
             //             ->select('tbl_Admin.nama_admin, tbl_Admin.no_hp ,tbl_Pelanggan.nama_plgn, tbl_Pelanggan.no_hp, tbl_Menu.nama_menu, tbl_Menu.harga_menu, tbl_Pemesanan.*')
             //             ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
@@ -40,21 +40,38 @@ class Pemesanan_model extends Model
 
         if($id === false){
             // return $this->findAll();
-            return $this->table('tbl_pemesanan')
-                        ->select('tbl_Pemesanan.*, tbl_Pelanggan.nama_plgn,tbl_Admin.nama_admin')
-                        ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
-                        ->join('tbl_Pelanggan', 'tbl_Pelanggan.id_plgn = tbl_Pelanggan.id_plgn','INNER')
-                        ->get()
-                        ->getResultArray();
+            $query = $this->db->query(
+                "SELECT tbl_pemesanan.*, tbl_pelanggan.nama_plgn,tbl_admin.nama_admin
+                FROM `tbl_pemesanan` 
+                INNER JOIN tbl_admin on tbl_admin.id_admin = tbl_pemesanan.id_admin
+                INNER JOIN tbl_pelanggan on tbl_pelanggan.id_plgn = tbl_pemesanan.id_plgn"
+            );
+            return $query->getResultArray();
+            // return $this->table('tbl_pemesanan')
+            //             ->select('tbl_Pemesanan.*, tbl_Pelanggan.nama_plgn,tbl_Admin.nama_admin')
+            //             ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
+            //             ->join('tbl_Pelanggan', 'tbl_Pelanggan.id_plgn = tbl_Pelanggan.id_plgn','INNER')
+            //             ->get()
+            //             ->getResultArray();
         } else {
             // return $this->getWhere(['id_pmsn' => $id]);
-            return $this->table('tbl_Pemesanan')
-                        ->select('tbl_Pemesanan.*, tbl_Pelanggan.nama_plgn,tbl_Admin.nama_admin')
-                        ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
-                        ->join('tbl_Pelanggan', 'tbl_Pelanggan.id_plgn = tbl_Pelanggan.id_plgn','INNER')
-                        ->where('tbl_Pemesanan.id_pmsn', $id)
-                        ->get()
-                        ->getRowArray();
+            // return $this->table('tbl_Pemesanan')
+            //             ->select('tbl_Pemesanan.*, tbl_Pelanggan.nama_plgn,tbl_Admin.nama_admin')
+            //             ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
+            //             ->join('tbl_Pelanggan', 'tbl_Pelanggan.id_plgn = tbl_Pelanggan.id_plgn','INNER')
+            //             ->where('tbl_Pemesanan.id_pmsn', $id)
+            //             ->get()
+            //             ->getResultArray();
+            $query = $this->db->query(
+                "SELECT tbl_pemesanan.*, tbl_pelanggan.nama_plgn,tbl_admin.nama_admin
+                FROM `tbl_pemesanan`
+                INNER JOIN tbl_admin on tbl_admin.id_admin = tbl_pemesanan.id_admin
+                INNER JOIN tbl_pelanggan on tbl_pelanggan.id_plgn = tbl_pemesanan.id_plgn
+                WHERE tbl_pemesanan.id_pmsn = $id
+                "
+                
+            );
+            return $query->getResultArray();
         }  
     }
 
