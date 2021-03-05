@@ -53,7 +53,7 @@ $routes->resource('PemesananDetailAPI');
 $routes->get('RatingAPI/rekomendasi', 'RatingAPI::getHighRating');
 $routes->resource('RatingAPI');
 
-$routes->get('/', 'Dashboard::index');
+$routes->get('/', 'Transaction::index');
 
 $routes->get('auth/login', 'Auth::login');
 $routes->post('auth/proses_login', 'Auth::proses_login');
@@ -108,6 +108,7 @@ $routes->get('transaction/edit/(:num)', 'Transaction::edit/$1');
 $routes->post('transaction/update', 'Transaction::update');
 $routes->post('transaction/proses_import', 'Transaction::proses_import');
 $routes->get('transaction/export', 'Transaction::export');
+// $routes->get('laporan/cetakpdf', 'Laporan::cetakpdf');
 
 /**
  * --------------------------------------------------------------------

@@ -130,31 +130,33 @@ class Transaction extends Controller
     public function export()
     {
         // ambil data transaction dari database
-        $transactions = $this->pemesanan_model->getTransaction();
+        $transactions = $this->pemesanan_model->getPemesanan();
         // panggil class Sreadsheet baru
         $spreadsheet = new Spreadsheet;
         // Buat custom header pada file excel
         $spreadsheet->setActiveSheetIndex(0)
                     ->setCellValue('A1', 'No')
-                    ->setCellValue('B1', 'Product')
-                    ->setCellValue('C1', 'Date')
-                    ->setCellValue('D1', 'Price');
+                    ->setCellValue('B1', 'Pelanggan')
+                    ->setCellValue('C1', 'Waktu Pemesanan')
+                    ->setCellValue('D1', 'Total Harga');
         // define kolom dan nomor
         $kolom = 2;
         $nomor = 1;
+       
         // tambahkan data transaction ke dalam file excel
         foreach($transactions as $data) {
 
             $spreadsheet->setActiveSheetIndex(0)
                         ->setCellValue('A' . $kolom, $nomor)
-                        ->setCellValue('B' . $kolom, $data['product_name'])
-                        ->setCellValue('C' . $kolom, date('j F Y', strtotime($data['trx_date'])))
-                        ->setCellValue('D' . $kolom, "Rp. ".number_format($data['trx_price']));
+                        ->setCellValue('B' . $kolom, $data['nama_plgn'])
+                        ->setCellValue('C' . $kolom, date('j F Y', strtotime($data['waktu_pmsn'])))
+                        ->setCellValue('D' . $kolom, "Rp. ".number_format($data['total_harga']));
 
             $kolom++;
             $nomor++;
 
         }
+    
         // download spreadsheet dalam bentuk excel .xlsx
         $writer = new Xlsx($spreadsheet);
 

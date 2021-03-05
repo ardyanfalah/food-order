@@ -75,7 +75,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <?php echo form_label('Status', 'Status'); ?>
-                      <?php echo form_dropdown('status_Menu', ['' => 'Pilih', 'Active' => 'Active', 'Inactive' => 'Inactieve'], $product['status_Menu'], ['class' => 'form-control']); ?>
+                      <?php echo form_dropdown('status_Menu', ['' => 'Pilih', 'Active' => 'Active', 'Inactive' => 'Inactive'], $product['status_Menu'], ['class' => 'form-control']); ?>
                     </div>
                     <div class="form-group">
                       <?php echo form_label('Deskripsi', 'Deskripsi'); ?>

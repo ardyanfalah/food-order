@@ -16,7 +16,7 @@ class Auth extends BaseController
     public function index()
     {
         if($this->cek_login() == TRUE){
-			return redirect()->to(base_url('/dashboard'));
+			return redirect()->to(base_url('/transaction'));
         }
         
         echo view('auth/login');
@@ -25,7 +25,7 @@ class Auth extends BaseController
     public function login()
     {
         if($this->cek_login() == TRUE){
-			return redirect()->to(base_url('/dashboard'));
+			return redirect()->to(base_url('/transaction'));
         }
         
         echo view('auth/login');
@@ -61,7 +61,7 @@ class Auth extends BaseController
                     session()->set('name', $cek_login['nama_admin']);
                     session()->set('status', $cek_login['status_admin']);
                     
-                    return redirect()->to(base_url('dashboard'));          
+                    return redirect()->to(base_url('transaction'));          
                 // email cocok, tapi password salah
                 } else {
                     session()->setFlashdata('errors', ['' => 'Password yang Anda masukan salah']);
@@ -78,7 +78,7 @@ class Auth extends BaseController
     public function register()
     {
         if($this->cek_login() == TRUE){
-			return redirect()->to(base_url('dashboard'));
+			return redirect()->to(base_url('transaction'));
 		}
         return view('auth/register');
     }

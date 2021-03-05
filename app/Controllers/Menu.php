@@ -72,7 +72,8 @@ class Menu extends Controller
 
         // paginate
         $paginate = 5;
-        $data['products']   = $this->menu_model->where($where)->like($like)->orLike($or_like)->paginate($paginate, 'product');
+        // $data['products']   = $this->menu_model->where($where)->like($like)->orLike($or_like)->paginate($paginate, 'product');
+        $data['products']   = $this->menu_model->getMenu();
         $data['pager']      = $this->menu_model->pager;
 
         // generate number untuk tetap bertambah meskipun pindah halaman paginate
@@ -182,6 +183,7 @@ class Menu extends Controller
             $ubah = $this->menu_model->updateMenu($data, $id);
             if($ubah)
             {
+                
                 session()->setFlashdata('info', 'Updated Product successfully');
                 return redirect()->to(base_url('product')); 
             }
@@ -190,11 +192,13 @@ class Menu extends Controller
  
     public function delete($id)
     {
-        $hapus = $this->menu_model->deleteMenu($id);
-        if($hapus)
-        {
-            session()->setFlashdata('warning', 'Deleted Product successfully');
+        $hapus = $this->menu_model->updateStatusMenu($id);
+ 
+        // if($hapus)
+        // {
+            session()->setFlashdata('warning', 'Menu has inactive');
             return redirect()->to(base_url('product')); 
-        }
+        // }
+
     }
 }

@@ -9,7 +9,7 @@ class Menu_model extends Model
     {
         if($id === false){
             $query = $this->db->query(
-                "SELECT tbl_menu.*, IFNULL(AVG(tbl_rating.nilai), 0)  as rating 
+                "SELECT tbl_menu.*, IFNULL( ROUND(AVG(tbl_rating.nilai),2) , 0)  as rating 
                 from tbl_menu
                 LEFT JOIN tbl_rating ON tbl_rating.id_menu = tbl_menu.id_menu
                 group by tbl_menu.id_menu order by rating DESC"
@@ -48,8 +48,13 @@ class Menu_model extends Model
         return $this->db->table($this->table)->update($data, ['id_menu' => $id]);
     }
 
-    public function deleteMenu($id)
+    public function updateStatusMenu($id)
     {
-        return $this->db->table($this->table)->delete(['id_menu' => $id]);
+        $query = $this->db->query(
+            "UPDATE `tbl_menu` SET `status_Menu` = 'Inactive' WHERE `tbl_menu`.`id_menu` = $id;
+            "
+        );
+        return $query->getResult();
+        
     } 
 }

@@ -16,10 +16,10 @@
         </div>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
-                    <a href="<?php echo base_url('/'); ?>" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>Dashboard</p>
+            <li class="nav-item">
+                    <a href="<?php echo base_url('/transaction'); ?>" class="nav-link">
+                        <i class="nav-icon fa fa-list-alt"></i>
+                        <p>Transaksi</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -28,12 +28,7 @@
                         <p>Menu</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="<?php echo base_url('/transaction'); ?>" class="nav-link">
-                        <i class="nav-icon fa fa-list-alt"></i>
-                        <p>Transaksi</p>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a href="<?php echo base_url('/category'); ?>" class="nav-link">
                         <i class="nav-icon fas fa-tags"></i>

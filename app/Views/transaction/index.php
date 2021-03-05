@@ -25,7 +25,7 @@
                     <div class="card">
                         <div class="card-header">
                             List Transaksi
-                            <a href="<?php echo base_url('product/create'); ?>" class="btn btn-primary float-right">Tambah</a>
+                            <a href="<?php echo base_url('transaction/export'); ?>" class="btn btn-primary float-right">Export to Excel</a>     
                         </div>
                         <div class="card-body">
                         

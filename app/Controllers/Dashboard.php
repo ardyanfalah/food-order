@@ -12,10 +12,10 @@ class Dashboard extends BaseController
 	
 	public function index()
 	{
-		// if($this->cek_login() == FALSE){
-		// 	session()->setFlashdata('error_login', 'Silahkan login terlebih dahulu untuk mengakses data');
-		// 	return redirect()->to('/auth/login');
-		// }
+		if($this->cek_login() == FALSE){
+			session()->setFlashdata('error_login', 'Silahkan login terlebih dahulu untuk mengakses data');
+			return redirect()->to('/auth/login');
+		}
 		// $data['total_transaction']	= $this->dashboard_model->getCountTrx();
 		// $data['total_product']		= $this->dashboard_model->getCountProduct();
 		// $data['total_category']		= $this->dashboard_model->getCountCategory();

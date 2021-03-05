@@ -82,6 +82,7 @@
                                             <th>Nama Menu</th>
                                             <th>Kategori</th>
                                             <th>Harga</th>
+                                            <th>Rating</th>
                                             <th>Status</th>
                                             <th class="text-center">Action</th>
                                         </tr>
@@ -94,6 +95,7 @@
                                             <td><?php echo $row['nama_menu']; ?></td>
                                             <td><?php echo $row['id_ktgr']; ?></td>
                                             <td><?php echo "Rp. ".number_format($row['harga_menu']); ?></td>
+                                            <td><?php echo $row['rating']; ?></td>
                                             <td><?php echo $row['status_Menu']; ?></td>
                                             <td class="text-center">
                                                 <div class="btn-group">
@@ -103,7 +105,7 @@
                                                     <a href="<?php echo base_url('product/edit/'.$row['id_menu']); ?>" class="btn btn-sm btn-success">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="<?php echo base_url('product/delete/'.$row['id_menu']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
+                                                    <a href="<?php echo base_url('product/delete/'.$row['id_menu']); ?>" class="btn btn-sm btn-danger" >
                                                         <i class="fa fa-trash-alt"></i>
                                                     </a>
                                                 </div>
@@ -113,11 +115,11 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="row mt-3 float-right">
+                            <!-- <div class="row mt-3 float-right">
                                 <div class="col-md-12">
-                                    <?php echo $pager->links('product', 'bootstrap_pagination') ?> 
+                                    <?php//echo $pager->links('product', 'bootstrap_pagination') ?> 
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
