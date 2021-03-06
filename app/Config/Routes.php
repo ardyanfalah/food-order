@@ -41,6 +41,7 @@ $routes->resource('MenuAPI');
 $routes->post('PemesananAPI/testCheck', 'PemesananAPI::testCheck');
 $routes->post('PemesananAPI/create_pemesanan', 'PemesananAPI::createPemesanan');
 $routes->get('PemesananAPI/test', 'PemesananAPI::test');
+$routes->get('PemesananAPI/(:num)', 'PemesananAPI::getByAccount/$1');
 
 $routes->post('AuthAPI/login', 'AuthAPI::login_user');
 $routes->post('AuthAPI/register', 'AuthAPI::register_user');

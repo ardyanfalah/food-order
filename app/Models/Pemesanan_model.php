@@ -107,4 +107,16 @@ class Pemesanan_model extends Model
         return $this->db->insertID();
     }
 
+    public function getByAccount($id){
+        $query = $this->db->query(
+            "SELECT tbl_pemesanan.*, tbl_pelanggan.nama_plgn,tbl_admin.nama_admin
+            FROM `tbl_pemesanan`
+            INNER JOIN tbl_admin on tbl_admin.id_admin = tbl_pemesanan.id_admin
+            INNER JOIN tbl_pelanggan on tbl_pelanggan.id_plgn = tbl_pemesanan.id_plgn
+            WHERE tbl_pemesanan.id_plgn = $id
+            "
+        );
+        return $query->getResultArray();
+    }
+
 }

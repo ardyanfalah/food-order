@@ -39,6 +39,32 @@ class PemesananAPI extends ResourceController
         return $this->respond($response, 200);
     }
 
+    public function getByAccount($id = null)
+    {
+        $model = new Pemesanan_model();
+        $modelDetail = new PemesananDetail_model();
+        try
+        {
+            $data = $model->getByAccount($id);
+            foreach($data as $i => $item) {
+                $data[$i]["menu"] = $modelDetail->getDetailByPemesanan($data[$i]["id_pmsn"]);
+            }
+            $response = [
+                'success'   => true,
+                'data'  => $data,
+                'messages' => "success"
+            ];
+            return $this->respond($response, 200);
+        }catch(\Exception $e){
+            $response = [
+                'success'   => false,
+                'data'  => null,
+                'messages' => $e->getMessage()
+            ];
+            return $this->respond($response, 200);
+        }
+    }
+
     // get single product
     public function show($id = null)
     {
