@@ -95,22 +95,18 @@ class PemesananAPI extends ResourceController
     public function testCheck(){
         $model = new Pemesanan_model();
         $myJson = file_get_contents("php://input");
-        $temp = json_decode($myJson);
-        if(is_array($temp)){
-            $data = $temp;
-        } else {
-            $data = json_decode($temp);
-        }
-        $obj = $data[0];
-        $arr = $data[1];
-        $obj->menu = $arr;
+        $image = $this->request->getFile('Image_Menu');
+        $temp = $this->request->getVar('data');
+        $jsontemp = json_decode($temp);
+        // random name file
+        $name = $image->getRandomName();
         try{
             // foreach($arr as $i => $item) {
             //     $item->id_pmsn = 77;
             // }
             $response = [
                 'success'   => true,
-                'data'  => $data,
+                'data'  => $jsontemp,
                 'messages' => 'success'
             ];
         } catch(\Exception $e){
@@ -127,14 +123,20 @@ class PemesananAPI extends ResourceController
     public function createPemesanan()
     {
         $model = new Pemesanan_model();
-        $myJson = file_get_contents("php://input");
-        $temp = json_decode($myJson);
+
+        $image = $this->request->getFile('image');
+        $name = $image->getRandomName();
+        $image->move(ROOTPATH . 'public/uploads', $name);
+
+        $tempdata = $this->request->getVar('data');
+        $temp = json_decode($tempdata);
         if(is_array($temp)){
             $data = $temp;
         } else {
             $data = json_decode($temp);
         }
         $obj = $data[0];
+        $obj->gambar_bukti_pembayaran = $name;
         $header = json_decode(json_encode($obj),true);
         $arr = $data[1];
         try{
@@ -148,7 +150,7 @@ class PemesananAPI extends ResourceController
             $postDetail = $model->insertBatchDetailPemesanan($arr);
             $response = [
                 'success'   => true,
-                'data'  => getType($header),
+                'data'  => "success",
                 'messages' => 'success'
             ];
         } catch(\Exception $e) {
@@ -159,8 +161,7 @@ class PemesananAPI extends ResourceController
             ];
         }
         
-        // return $this->respond($response, 200);
-        return $this->respond($response, 200);;
+        return $this->respond($response, 200);
     }
 
     // create a product

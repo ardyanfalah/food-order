@@ -49,6 +49,16 @@ class RatingAPI extends ResourceController
         return $this->respond($response, 200);
     }
  
+    public function getByPemesanan($id){
+        $model = new Rating_model();
+        $data = $model->getWhere(['id_rating' => $id])->getResult();
+        if($data){
+            return $this->respond($data);
+        }else{
+            return $this->failNotFound('No Data Found with id '.$id);
+        } 
+    }
+
     // get single product
     public function show($id = null)
     {

@@ -15,6 +15,11 @@ class TblRating extends Migration
 				'unsigned'       	=> TRUE,
 				'auto_increment' 	=> TRUE
 			],
+			'id_pmsn'				=> [
+				'type'           	=> 'BIGINT',
+				'constraint'     	=> 20,
+				'unsigned'       	=> TRUE
+			],
 			'id_menu'			=> [
 				'type'           	=> 'BIGINT',
 				'constraint'     	=> 20,
@@ -43,6 +48,7 @@ class TblRating extends Migration
 		$this->forge->addKey('id_rating', TRUE);
 		$this->forge->addForeignKey('id_menu','tbl_Menu','id_menu','CASCADE','CASCADE');
 		$this->forge->addForeignKey('id_plgn','tbl_Pelanggan','id_plgn','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_pmsn','tbl_pemesanan','id_pmsn','CASCADE','CASCADE');
 		$this->forge->createTable('tbl_Rating');
 	}
 

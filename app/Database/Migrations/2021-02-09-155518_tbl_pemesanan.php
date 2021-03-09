@@ -6,9 +6,6 @@ class TblPemesanan extends Migration
 {
 	public function up()
 	{
-
-		//id_pmsn	id_admin	id_plgn	id_tmpt	waktu_pmsn	waktu_dtg	waktu_byr	status_pemesanan	total_harga
-
 		$this->db->enableForeignKeyChecks();
 		$this->forge->addField([
 			'id_pmsn'				=> [
@@ -50,6 +47,11 @@ class TblPemesanan extends Migration
 				'type'           	=> 'ENUM',
 				'constraint' 		=> "'Menunggu_Verifikasi','Proses_Pembuatan','Selesai'",
 				'default' 			=> 'Menunggu_Verifikasi'
+			],
+			'gambar_bukti_pembayaran'	=> [
+				'type'           	=> 'VARCHAR',
+				'constraint'     	=> '100',
+				'null'           	=> TRUE,
 			],
 			'total_harga' 			=> [
 				'type'           	=> 'INT',

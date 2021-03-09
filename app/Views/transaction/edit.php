@@ -39,6 +39,24 @@
                 <?php //echo $product['id_menu'] ?>
 
                 <div class="row">
+                  <div class="col-4">
+                    
+                  </div>
+                  <div >
+
+                  </div>
+                </div>
+
+                <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <?php echo form_label('Bukti Pembayaran', 'Bukti Pembayaran'); ?>
+                        <br>
+                        <img src="<?php echo base_url('uploads/'.$transaction['gambar_bukti_pembayaran']) ?>" class="img-fluid" style="width: 100%;max-height: 400px; object-fit: contain;">
+                        <br>
+                        <br>
+                    </div>
+                  </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <?php echo form_label('Nama Admin ', 'Nama Admin '); ?>
@@ -52,8 +70,6 @@
                       <?php echo form_label('Harga Total', 'Harga Total'); ?>
                       <?php echo form_input('total_harga', $transaction['total_harga'], ['class' => 'form-control', 'placeholder' => 'Nama','disabled'=>'disabled']);   ?>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="form-group">
                       <?php echo form_label('Waktu Pemesanan', 'Status Pemesanan'); ?>
                       <?php echo form_input('waktu_pmsn', $transaction['waktu_pmsn'], ['class' => 'form-control', 'placeholder' => 'Waktu Pemesanan','disabled'=>'disabled']);   ?>
@@ -67,6 +83,7 @@
                       <?php echo form_input('waktu_dtg', (!empty($transaction['waktu_dtg'])) ? $transaction['waktu_dtg'] : '-', ['class' => 'form-control', 'placeholder' => 'Waktu Datang','disabled'=>'disabled']);   ?>
                     </div>
                   </div>
+                  
                 </div>
                 <div class="row">
                   <div class="col-md-12">
