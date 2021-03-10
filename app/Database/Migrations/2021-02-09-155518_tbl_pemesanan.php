@@ -26,12 +26,6 @@ class TblPemesanan extends Migration
 				'unsigned'       	=> TRUE,
 				'null'				=> TRUE
 			],
-			'id_tmpt'				=> [
-				'type'           	=> 'INT',
-				'constraint'     	=> 5,
-				'unsigned'       	=> TRUE,
-				'null'				=> TRUE
-			],
 			'waktu_pmsn' 			=> [
 				'type'           	=> 'DATETIME',
 			],
@@ -61,7 +55,6 @@ class TblPemesanan extends Migration
 		$this->forge->addKey('id_pmsn', TRUE);
 		$this->forge->addForeignKey('id_admin','tbl_Admin','id_admin','CASCADE','CASCADE');
 		$this->forge->addForeignKey('id_plgn','tbl_Pelanggan','id_plgn','CASCADE','CASCADE');
-		$this->forge->addForeignKey('id_tmpt','tbl_Tempat','id_tmpt','CASCADE','CASCADE');
 		$this->forge->createTable('tbl_Pemesanan');
 	}
 

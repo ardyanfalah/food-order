@@ -43,11 +43,9 @@ class TempatAPI extends ResourceController
         try{
             $model->insertTempat($data);
             $response = [
-                'status'   => 201,
-                'error'    => null,
-                'messages' => [
-                    'success' => 'Data Saved'
-                ]
+                'success'   => true,
+                'data'  => null,
+                'messages' => 'data saved'
             ];
         } catch (\Exception $e) {
             $response = [
