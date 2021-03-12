@@ -10,10 +10,27 @@ class Tempat_model extends Model
         if($id === false){
             return $this->findAll();
         } else {
-            return $this->getWhere(['id_tmpt' => $id]);
+            $query = $this->db->query(
+                "SELECT *
+                FROM `tbl_tempat`
+                WHERE tbl_tempat.id_tmpt = $id
+                "
+            );
+            return $query->getResultArray();
         }  
     }
  
+    public function getCountEmpty()
+    {
+        $query = $this->db->query(
+            "SELECT *
+            FROM `tbl_tempat`
+            WHERE tbl_tempat.status_tmpt = 'Empty'
+            "
+        );
+        return $query->getResult();
+    }
+
     public function insertTempat($data)
     {
         return $this->db->table($this->table)->insert($data);
@@ -28,4 +45,13 @@ class Tempat_model extends Model
     {
         return $this->db->table($this->table)->delete(['id_tmpt' => $id]);
     } 
+
+    public function updateStatusTempat($status, $id){
+
+        return $this->db->table('tbl_Tempat')
+                    ->set('status_tmpt',$status)
+                    ->where('id_tmpt', $id)
+                    ->update();
+    }
+    
 }

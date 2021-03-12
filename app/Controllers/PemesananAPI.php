@@ -4,6 +4,9 @@ use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\Pemesanan_model;
 use App\Models\PemesananDetail_model;
+use App\Models\Tempat_model;
+use App\Models\TempatDetail_model;
+
  
 class PemesananAPI extends ResourceController
 {
@@ -13,13 +16,16 @@ class PemesananAPI extends ResourceController
     {
         $model = new Pemesanan_model();
         $modelDetail = new PemesananDetail_model();
-        
+        $modelTempatPemesanan = new TempatDetail_model();
         try
         {
             $data = $model->getPemesanan();
             foreach($data as $i => $item) {
                 $data[$i]["menu"] = $modelDetail->getDetailByPemesanan($data[$i]["id_pmsn"]);
+                $tempTempat = $modelTempatPemesanan->getTempatByPemesanan($data[$i]["id_pmsn"]);
+                $data[$i]["tempat"] = $tempTempat[0]->no_tempat;
             }
+
             $response = [
                 'success'   => true,
                 'data'  => $data,
@@ -43,11 +49,15 @@ class PemesananAPI extends ResourceController
     {
         $model = new Pemesanan_model();
         $modelDetail = new PemesananDetail_model();
+        $modelTempatPemesanan = new TempatDetail_model();
+
         try
         {
             $data = $model->getByAccount($id);
             foreach($data as $i => $item) {
                 $data[$i]["menu"] = $modelDetail->getDetailByPemesanan($data[$i]["id_pmsn"]);
+                $tempTempat = $modelTempatPemesanan->getTempatByPemesanan($data[$i]["id_pmsn"]);
+                $data[$i]["tempat"] = $tempTempat[0]->no_tempat;
             }
             $response = [
                 'success'   => true,
@@ -123,6 +133,8 @@ class PemesananAPI extends ResourceController
     public function createPemesanan()
     {
         $model = new Pemesanan_model();
+        $modelTempat = new Tempat_model();
+        $modelDetailTempat = new TempatDetail_model();
 
         $image = $this->request->getFile('image');
         $name = $image->getRandomName();
@@ -139,18 +151,34 @@ class PemesananAPI extends ResourceController
         $obj->gambar_bukti_pembayaran = $name;
         $header = json_decode(json_encode($obj),true);
         $arr = $data[1];
+        if($obj->is_takeout == 'False'){
+            $seat = $data[2];
+        } else {
+            $seat = null;
+        }
         try{
+            
             $post = $model->insertPemesanan($header);
             $id = $model->getLastId();
             foreach($arr as $i => $item) {
                 $item->id_pmsn = $id;
             }
-
             
             $postDetail = $model->insertBatchDetailPemesanan($arr);
+
+            //tambah for loop ganti status dan hit modelnya
+            if($seat != null){
+                foreach($seat as $i => $item) {
+                    $item->id_pmsn = $id;
+                    $tempat = $modelTempat->updateStatusTempat( 'Reserved',$item->id_tmpt );
+                } 
+                $detailTempat = $modelDetailTempat->insertBatchDetailPemesananTempat($seat);
+            }
+            //
+
             $response = [
                 'success'   => true,
-                'data'  => "success",
+                'data'  => null,
                 'messages' => 'success'
             ];
         } catch(\Exception $e) {

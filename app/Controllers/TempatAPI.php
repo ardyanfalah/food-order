@@ -31,6 +31,23 @@ class TempatAPI extends ResourceController
             return $this->failNotFound('No Data Found with id '.$id);
         }
     }
+
+    public function getCountEmptyPlace()
+    {
+        $model = new Tempat_model();
+        $data = $model->getCountEmpty();
+        if(count($data) > 0){
+            $result = true;
+        } else {
+            $result = false;
+        }
+        $response = [
+            'success'   => true,
+            'data'  => $result,
+            'messages' => 'success'
+        ];
+        return $this->respond($response, 200);
+    }
  
     // create a product
     public function create()

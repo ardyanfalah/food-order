@@ -6,6 +6,7 @@ use App\Models\Menu_model;
 use App\Models\Product_model;
 use App\Models\Pemesanan_model;
 use App\Models\PemesananDetail_model;
+use App\Models\TempatDetail_model;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -20,6 +21,7 @@ class Transaction extends Controller
         $this->pemesanan_model = new Pemesanan_model();
         $this->menu_model = new Menu_model();
         $this->pemesanan_detail_model = new PemesananDetail_model();
+        $this->pemesanan_tempat_model = new TempatDetail_model();
 
     }
 
@@ -36,8 +38,10 @@ class Transaction extends Controller
 
     public function edit($id){
         $data['details'] =  $this->pemesanan_detail_model->getDetailByPemesanan($id);
+        $table= $this->pemesanan_tempat_model->getTempatByPemesanan($id);
         $temp = $this->pemesanan_model->getPemesanan($id);
         $data['transaction'] = $temp[0];
+        $data['transaction']['tempat'] = $table[0]->no_tempat;
         echo view('transaction/edit', $data);
     }
 
@@ -47,11 +51,11 @@ class Transaction extends Controller
 
         try{
             $this->pemesanan_model->updateStatusPemesanan($id,$data);
-            session()->setFlashdata('info', 'Updated Product successfully');
+            session()->setFlashdata('info', 'Updated Transaction Success');
             var_dump("sukses");
         } catch(\Exception $e) {
             var_dump($e->getMessage());
-            session()->setFlashdata('info', 'Updated Product Failed');
+            session()->setFlashdata('info', 'Updated Transaction Failed');
             session()->setFlashdata('errors', $e->getMessage());
         }
         return redirect()->to(base_url('transaction'));

@@ -34,8 +34,10 @@ $routes->setAutoRoute(false);
 $routes->resource('ProductAPI');
 $routes->resource('KategoriAPI');
 $routes->resource('PelangganAPI');
-$routes->resource('TempatAPI');
 $routes->resource('MenuAPI');
+
+$routes->get('TempatAPI/count_empty', 'TempatAPI::getCountEmptyPlace');
+$routes->resource('TempatAPI');
 
 // $routes->get('PemesananAPI/testCheck', 'PemesananAPI::testCheck');
 $routes->post('PemesananAPI/testCheck', 'PemesananAPI::testCheck');
@@ -110,6 +112,11 @@ $routes->post('transaction/update', 'Transaction::update');
 $routes->post('transaction/proses_import', 'Transaction::proses_import');
 $routes->get('transaction/export', 'Transaction::export');
 // $routes->get('laporan/cetakpdf', 'Laporan::cetakpdf');
+
+$routes->get('tempat', 'Tempat::index');
+$routes->get('tempat/edit/(:num)', 'Tempat::edit/$1');
+$routes->post('tempat/update', 'Tempat::update');
+
 
 /**
  * --------------------------------------------------------------------

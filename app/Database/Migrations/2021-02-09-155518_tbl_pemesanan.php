@@ -51,6 +51,11 @@ class TblPemesanan extends Migration
 				'type'           	=> 'INT',
 				'constraint'     	=> '11',
 			],
+			'is_takeout' 			=> [
+				'type'           	=> 'ENUM',
+				'constraint' 		=> "'True','False'",
+				'default' 			=> 'False'
+			]
 		]);
 		$this->forge->addKey('id_pmsn', TRUE);
 		$this->forge->addForeignKey('id_admin','tbl_Admin','id_admin','CASCADE','CASCADE');

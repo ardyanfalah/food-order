@@ -82,6 +82,10 @@
                       <?php echo form_label('Waktu Datang', 'Waktu Datang'); ?>
                       <?php echo form_input('waktu_dtg', (!empty($transaction['waktu_dtg'])) ? $transaction['waktu_dtg'] : '-', ['class' => 'form-control', 'placeholder' => 'Waktu Datang','disabled'=>'disabled']);   ?>
                     </div>
+                    <div class="form-group">
+                      <?php echo form_label('Nomor Meja', 'Nomor Meja'); ?>
+                      <?php echo form_input('tempat', (!empty($transaction['tempat'])) ? $transaction['tempat'] : '-', ['class' => 'form-control', 'placeholder' => 'Nomor Meja','disabled'=>'disabled']);   ?>
+                    </div>
                   </div>
                   
                 </div>
