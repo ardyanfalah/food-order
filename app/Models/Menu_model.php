@@ -9,7 +9,7 @@ class Menu_model extends Model
     {
         if($id === false){
             $query = $this->db->query(
-                "SELECT tbl_menu.*, IFNULL( ROUND(AVG(tbl_rating.nilai),2) , 0)  as rating 
+                "SELECT tbl_menu.*, IFNULL( ROUND(AVG(tbl_rating.nilai),1) , 0)  as rating 
                 from tbl_menu
                 LEFT JOIN tbl_rating ON tbl_rating.id_menu = tbl_menu.id_menu
                 group by tbl_menu.id_menu order by rating DESC"

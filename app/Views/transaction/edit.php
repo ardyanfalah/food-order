@@ -74,10 +74,10 @@
                       <?php echo form_label('Waktu Pemesanan', 'Status Pemesanan'); ?>
                       <?php echo form_input('waktu_pmsn', $transaction['waktu_pmsn'], ['class' => 'form-control', 'placeholder' => 'Waktu Pemesanan','disabled'=>'disabled']);   ?>
                     </div>
-                    <div class="form-group">
-                      <?php echo form_label('Waktu Bayar', 'Waktu Bayar'); ?>
-                      <?php echo form_input('waktu_byr',  (!empty($transaction['waktu_byr'])) ? $transaction['waktu_byr'] : '-', ['class' => 'form-control', 'placeholder' => 'Waktu Bayar','disabled'=>'disabled']);   ?>
-                    </div>
+                    <!-- <div class="form-group">
+                      <?php //echo form_label('Waktu Bayar', 'Waktu Bayar'); ?>
+                      <?php //echo form_input('waktu_byr',  (!empty($transaction['waktu_byr'])) ? $transaction['waktu_byr'] : '-', ['class' => 'form-control', 'placeholder' => 'Waktu Bayar','disabled'=>'disabled']);   ?>
+                    </div> -->
                     <div class="form-group">
                       <?php echo form_label('Waktu Datang', 'Waktu Datang'); ?>
                       <?php echo form_input('waktu_dtg', (!empty($transaction['waktu_dtg'])) ? $transaction['waktu_dtg'] : '-', ['class' => 'form-control', 'placeholder' => 'Waktu Datang','disabled'=>'disabled']);   ?>

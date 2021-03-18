@@ -82,7 +82,7 @@
                                             <th>Nama Pelanggan</th>
                                             <th>Waktu Pesan</th>
                                             <th>Waktu Datang</th>
-                                            <th>Waktu Bayar</th>
+                                            <!-- <th>Waktu Bayar</th> -->
                                             <th>Status</th>
                                             <th>Harga Total</th>
                                             <th class="text-center">Action</th>
@@ -97,7 +97,7 @@
                                             <td><?php echo $row['nama_plgn']; ?></td>
                                             <td><?php echo $row['waktu_pmsn']; ?></td>
                                             <td><?php echo $row['waktu_dtg']; ?></td>
-                                            <td><?php echo $row['waktu_byr']; ?></td>
+                                            <!-- <td><?php //echo $row['waktu_byr']; ?></td> -->
                                             <td><?php echo $row['status_pemesanan']; ?></td>
                                             <td><?php echo $row['total_harga']; ?></td>
                                             <td class="text-center">

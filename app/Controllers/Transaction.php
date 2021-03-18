@@ -165,7 +165,7 @@ class Transaction extends Controller
         $writer = new Xlsx($spreadsheet);
 
         header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="Laporan_Transaction.xlsx"');
+        header('Content-Disposition: attachment;filename="Laporan Transaksi.xlsx"');
         header('Cache-Control: max-age=0');
 
         $writer->save('php://output');
