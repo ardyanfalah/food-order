@@ -53,7 +53,7 @@ $routes->resource('AuthAPI');
 $routes->resource('PemesananAPI');
 $routes->resource('PemesananDetailAPI');
 
-$routes->get('RatingAPI/rekomendasi', 'RatingAPI::getHighRating');
+$routes->get('RatingAPI/rekomendasi/(:num)', 'RatingAPI::getHighRating/$1');
 $routes->resource('RatingAPI');
 
 $routes->get('/', 'Transaction::index');

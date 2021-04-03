@@ -16,6 +16,17 @@ class Rating_model extends Model
             return $this->getWhere(['id_rating' => $id]);
         }  
     }
+    
+    public function getRatingByPelangganId($id = false)
+    {
+        $query = $this->db->query(
+            "SELECT tbl_menu.*, AVG(tbl_rating.nilai) as rating 
+            from tbl_rating, tbl_menu 
+            where tbl_rating.id_menu = tbl_menu.id_menu 
+            group by tbl_rating.id_menu order by rating DESC limit 5"
+        );
+        return $query->getResultArray();
+    }
 
     public function getRatingLimit( $limit = 5)
     {
@@ -34,6 +45,18 @@ class Rating_model extends Model
             group by tbl_rating.id_menu order by rating DESC limit 5"
         );
         return $query->getResultArray();
+    }
+
+    public function getRatingAverageByPelanggan($id = null)
+    {
+        $query = $this->db->query(
+            "SELECT tbl_rating.*,AVG(tbl_rating.nilai) as rating_average
+            from tbl_rating 
+            WHERE tbl_rating.id_plgn = $id
+            GROUP by tbl_rating.id_menu"
+        );
+        return $query->getResult();
+
     }
  
     public function insertRating($data)
