@@ -52,13 +52,11 @@ class RatingAPI extends ResourceController
                 $ratings[$temp_id] = $temp_menu;
                 $counter= $counter + 1;
             }
-            $books = $this->test();
             $data = $this->getRecommendations($ratings,$id);
             foreach ($data as $key=>$value) {
                 $temp_result = $menuModel->getMenuWithRatingById($key);
-                array_push($recommendation,$temp_result);
+                array_push($recommendation,$temp_result[0]);
             }
-        // var_dump($ratings); 
             $coba = $model->getHighestRating();
             $response = [
                 'success'   => true,
@@ -74,38 +72,6 @@ class RatingAPI extends ResourceController
         }
 
         return $this->respond($response, 200);
-    }
- 
-    public function test(){
-        $books =  array(
-                
-            "phil" => array("my girl" => 2.5, "the god delusion" => 3.5,
-                            "tweak" => 3, "the shack" => 4,
-                            "the birds in my life" => 2.5,
-                            "new moon" => 3.5),
-            
-            "sameer" => array("the last lecture" => 2.5, "the god delusion" => 3.5,
-                              "the noble wilds" => 3, "the shack" => 3.5,
-                              "the birds in my life" => 2.5, "new moon" => 1),
-            
-            "john" => array("a thousand splendid suns" => 5, "the secret" => 3.5,
-                            "tweak" => 1),
-            
-            "peter" => array("chaos" => 5, "php in action" => 3.5),
-            
-            "jill" => array("the last lecture" => 1.5, "the secret" => 2.5,
-                            "the noble wilds" => 4, "the host: a novel" => 3.5,
-                            "the world without end" => 2.5, "new moon" => 3.5),
-            
-            "bruce" => array("the last lecture" => 3, "the hollow" => 1.5,
-                             "the noble wilds" => 3, "the shack" => 3.5,
-                             "the appeal" => 2, "new moon" => 3),
-            
-            "tom" => array("chaos" => 2.5)
-            
-            
-        );
-        return $books;
     }
 
     public function getByPemesanan($id){
