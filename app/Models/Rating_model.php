@@ -50,7 +50,7 @@ class Rating_model extends Model
     public function getRatingAverageByPelanggan($id = null)
     {
         $query = $this->db->query(
-            "SELECT tbl_rating.*,AVG(tbl_rating.nilai) as rating_average
+            "SELECT tbl_rating.*,ROUND(AVG(tbl_rating.nilai), 2) as rating_average
             from tbl_rating 
             WHERE tbl_rating.id_plgn = $id
             GROUP by tbl_rating.id_menu"

@@ -4,6 +4,7 @@ use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\Rating_model;
 use App\Models\Pelanggan_model;
+use App\Models\Menu_model;
  
 class RatingAPI extends ResourceController
 {
@@ -33,7 +34,9 @@ class RatingAPI extends ResourceController
     public function getHighRating($id = null){
         $model = new Rating_model();
         $pelangganModel = new Pelanggan_model();
-        $ratings = new \stdClass();
+        $menuModel = new Menu_model();
+        $ratings = array();
+        $recommendation = array();
         try{
             $pelangganSelf = $pelangganModel->getPelanggan($id);
             $pelangganAll = $pelangganModel->getPelanggan();
@@ -41,18 +44,25 @@ class RatingAPI extends ResourceController
             foreach ($pelangganAll as $value) {
                 $temp = $model->getRatingAverageByPelanggan($value["id_plgn"]);
                 $temp_id = (int)$value["id_plgn"];
-                $temp_menu = new \stdClass();
+                $temp_menu = array();
                 foreach ($temp as $menu) {
                     $id_menu = $menu->id_menu;
-                    $temp_menu->$id_menu = $menu->rating_average;
+                    $temp_menu[$id_menu] = (float) $menu->rating_average;
                 }
-                $ratings->$temp_id = $temp_menu;
+                $ratings[$temp_id] = $temp_menu;
                 $counter= $counter + 1;
             }
+            $books = $this->test();
             $data = $this->getRecommendations($ratings,$id);
+            foreach ($data as $key=>$value) {
+                $temp_result = $menuModel->getMenuWithRatingById($key);
+                array_push($recommendation,$temp_result);
+            }
+        // var_dump($ratings); 
+            $coba = $model->getHighestRating();
             $response = [
                 'success'   => true,
-                'data'  => $data,
+                'data'  => $recommendation,
                 'messages' => 'success'
             ];
         } catch (\Exception $e) {
@@ -202,9 +212,11 @@ class RatingAPI extends ResourceController
     {
         $similar = array();
         $sum = 0;
-    
+        
         foreach($preferences[$person1] as $key=>$value)
         {
+            
+            
             if(array_key_exists($key, $preferences[$person2]))
                 $similar[$key] = 1;
         }
@@ -270,16 +282,13 @@ class RatingAPI extends ResourceController
         
         foreach($preferences as $otherPerson=>$values)
         {
-
+            
             if($otherPerson != $person)
             {
+                
                 $sim = $this->similarityDistance($preferences, $person, $otherPerson);
-                echo "<pre>";
-                    // print_r($sim); 
-                    var_dump($sim);
-                    echo "</pre>";
+                
             }
-            
             if($sim > 0)
             {
                 foreach($preferences[$otherPerson] as $key=>$value)
@@ -300,13 +309,15 @@ class RatingAPI extends ResourceController
                 
             }
         }
-
+        
+        
         foreach($total as $key=>$value)
         {
-            $ranks[$key] = $value / $simSums[$key];
+            
+            $ranks[(string)$key] = $value / $simSums[$key];
         }
-        
-    array_multisort($ranks, SORT_DESC);    
+        // array_multisort($ranks, SORT_DESC);   
+    
     return $ranks;
         
     }

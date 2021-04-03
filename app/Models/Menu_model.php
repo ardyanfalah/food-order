@@ -37,6 +37,16 @@ class Menu_model extends Model
             // return $this->getWhere(['id_menu' => $id]);
         }  
     }
+
+    public function getMenuWithRatingById($id = null)
+    {
+        $query=$this->db->query("SELECT tbl_menu.*,AVG(tbl_rating.nilai) as rating
+        FROM `tbl_menu` 
+        INNER JOIN tbl_rating on tbl_menu.id_menu = tbl_rating.id_menu 
+        WHERE tbl_menu.id_menu = '$id'
+        GROUP by tbl_menu.id_menu");
+        return $query->getResultArray();
+    }
  
     public function insertMenu($data)
     {
