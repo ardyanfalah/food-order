@@ -46,16 +46,16 @@ class TblRating extends Migration
 			],
 		]);
 		$this->forge->addKey('id_rating', TRUE);
-		$this->forge->addForeignKey('id_menu','tbl_Menu','id_menu','CASCADE','CASCADE');
-		$this->forge->addForeignKey('id_plgn','tbl_Pelanggan','id_plgn','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_menu','tbl_menu','id_menu','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_plgn','tbl_pelanggan','id_plgn','CASCADE','CASCADE');
 		$this->forge->addForeignKey('id_pmsn','tbl_pemesanan','id_pmsn','CASCADE','CASCADE');
-		$this->forge->createTable('tbl_Rating');
+		$this->forge->createTable('tbl_rating');
 	}
 
 	//--------------------------------------------------------------------
 
 	public function down()
 	{
-		$this->forge->dropTable('tbl_Rating');
+		$this->forge->dropTable('tbl_rating');
 	}
 }

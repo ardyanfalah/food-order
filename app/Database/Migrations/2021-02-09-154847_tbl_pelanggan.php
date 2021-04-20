@@ -41,13 +41,13 @@ class TblPelanggan extends Migration
 			
 		]);
 		$this->forge->addKey('id_plgn', TRUE);
-		$this->forge->createTable('tbl_Pelanggan');
+		$this->forge->createTable('tbl_pelanggan');
 	}
 
 	//--------------------------------------------------------------------
 
 	public function down()
 	{
-		$this->forge->dropTable('tbl_Pelanggan');
+		$this->forge->dropTable('tbl_pelanggan');
 	}
 }

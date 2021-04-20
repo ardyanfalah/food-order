@@ -28,13 +28,13 @@ class TblTempat extends Migration
 			],
 		]);
 		$this->forge->addKey('id_tmpt', TRUE);
-		$this->forge->createTable('tbl_Tempat');
+		$this->forge->createTable('tbl_tempat');
 	}
 
 	//--------------------------------------------------------------------
 
 	public function down()
 	{
-		$this->forge->dropTable('tbl_Tempat');
+		$this->forge->dropTable('tbl_tempat');
 	}
 }

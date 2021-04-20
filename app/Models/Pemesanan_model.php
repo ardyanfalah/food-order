@@ -21,18 +21,18 @@ class Pemesanan_model extends Model
         // if($id === false){
             // return $query->getResultArray();
             // return $this->table('tbl_Pemesanan')
-            //             ->select('tbl_Admin.nama_admin, tbl_Admin.no_hp ,tbl_Pelanggan.nama_plgn, tbl_Pelanggan.no_hp, tbl_Menu.nama_menu, tbl_Menu.harga_menu, tbl_Pemesanan.*')
+            //             ->select('tbl_Admin.nama_admin, tbl_Admin.no_hp ,tbl_pelanggan.nama_plgn, tbl_pelanggan.no_hp, tbl_menu.nama_menu, tbl_menu.harga_menu, tbl_Pemesanan.*')
             //             ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
-            //             ->join('tbl_Pelanggan', 'tbl_Pelanggan.id_plgn = tbl_Pelanggan.id_plgn','INNER')
-            //             ->join('tbl_Menu', 'tbl_Menu.id_menu = tbl_Pemesanan.id_menu','INNER')
+            //             ->join('tbl_pelanggan', 'tbl_pelanggan.id_plgn = tbl_pelanggan.id_plgn','INNER')
+            //             ->join('tbl_menu', 'tbl_menu.id_menu = tbl_Pemesanan.id_menu','INNER')
             //             ->get()
             //             ->getResultArray();
         // } else {
             // return $this->table('tbl_Pemesanan')
-            //             ->select('tbl_Admin.nama_admin, tbl_Admin.no_hp ,tbl_Pelanggan.nama_plgn, tbl_Pelanggan.no_hp, tbl_Menu.nama_menu, tbl_Menu.harga_menu, tbl_Pemesanan.*')
+            //             ->select('tbl_Admin.nama_admin, tbl_Admin.no_hp ,tbl_pelanggan.nama_plgn, tbl_pelanggan.no_hp, tbl_menu.nama_menu, tbl_menu.harga_menu, tbl_Pemesanan.*')
             //             ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
-            //             ->join('tbl_Pelanggan', 'tbl_Pelanggan.id_plgn = tbl_Pelanggan.id_plgn','INNER')
-            //             ->join('tbl_Menu', 'tbl_Menu.id_menu = tbl_Pemesanan.id_menu','INNER')
+            //             ->join('tbl_pelanggan', 'tbl_pelanggan.id_plgn = tbl_pelanggan.id_plgn','INNER')
+            //             ->join('tbl_menu', 'tbl_menu.id_menu = tbl_Pemesanan.id_menu','INNER')
             //             ->where('tbl_Pemesanan.id_pmsn', $id)
             //             ->get()
             //             ->getRowArray();
@@ -48,17 +48,17 @@ class Pemesanan_model extends Model
             );
             return $query->getResultArray();
             // return $this->table('tbl_pemesanan')
-            //             ->select('tbl_Pemesanan.*, tbl_Pelanggan.nama_plgn,tbl_Admin.nama_admin')
+            //             ->select('tbl_Pemesanan.*, tbl_pelanggan.nama_plgn,tbl_Admin.nama_admin')
             //             ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
-            //             ->join('tbl_Pelanggan', 'tbl_Pelanggan.id_plgn = tbl_Pelanggan.id_plgn','INNER')
+            //             ->join('tbl_pelanggan', 'tbl_pelanggan.id_plgn = tbl_pelanggan.id_plgn','INNER')
             //             ->get()
             //             ->getResultArray();
         } else {
             // return $this->getWhere(['id_pmsn' => $id]);
             // return $this->table('tbl_Pemesanan')
-            //             ->select('tbl_Pemesanan.*, tbl_Pelanggan.nama_plgn,tbl_Admin.nama_admin')
+            //             ->select('tbl_Pemesanan.*, tbl_pelanggan.nama_plgn,tbl_Admin.nama_admin')
             //             ->join('tbl_Admin', 'tbl_Admin.id_admin = tbl_Pemesanan.id_admin','INNER')
-            //             ->join('tbl_Pelanggan', 'tbl_Pelanggan.id_plgn = tbl_Pelanggan.id_plgn','INNER')
+            //             ->join('tbl_pelanggan', 'tbl_pelanggan.id_plgn = tbl_pelanggan.id_plgn','INNER')
             //             ->where('tbl_Pemesanan.id_pmsn', $id)
             //             ->get()
             //             ->getResultArray();

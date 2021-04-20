@@ -3,7 +3,7 @@ use CodeIgniter\Model;
  
 class Menu_model extends Model
 {
-    protected $table = 'tbl_Menu';
+    protected $table = 'tbl_menu';
      
     public function getMenu($id = false)
     {
@@ -16,22 +16,22 @@ class Menu_model extends Model
             );
             return $query->getResultArray();
             // return $this->findAll();
-            // return $this->table('tbl_Menu')
-            //             ->select('tbl_Menu.*, tbl_Kategori.nama_ktgr')
-            //             ->join('tbl_Kategori', 'tbl_Kategori.id_ktgr = tbl_Menu.id_ktgr','INNER')
+            // return $this->table('tbl_menu')
+            //             ->select('tbl_menu.*, tbl_Kategori.nama_ktgr')
+            //             ->join('tbl_Kategori', 'tbl_Kategori.id_ktgr = tbl_menu.id_ktgr','INNER')
             //             ->get()
             //             ->getRowArray();
         } else {
             // $query = $this->db->query(
             //     "SELECT *
-            //     FROM tbl_Menu
-            //     WHERE tbl_Menu.id_menu = $id"
+            //     FROM tbl_menu
+            //     WHERE tbl_menu.id_menu = $id"
             // );
             // return $query->getRowArray();
-            return $this->table('tbl_Menu')
-                        ->select('tbl_Menu.*, tbl_Kategori.nama_ktgr')
-                        ->join('tbl_Kategori', 'tbl_Kategori.id_ktgr = tbl_Menu.id_ktgr','INNER')
-                        ->where('tbl_Menu.id_menu', $id)
+            return $this->table('tbl_menu')
+                        ->select('tbl_menu.*, tbl_Kategori.nama_ktgr')
+                        ->join('tbl_Kategori', 'tbl_Kategori.id_ktgr = tbl_menu.id_ktgr','INNER')
+                        ->where('tbl_menu.id_menu', $id)
                         ->get()
                         ->getRowArray();
             // return $this->getWhere(['id_menu' => $id]);

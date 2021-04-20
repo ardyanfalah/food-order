@@ -3,12 +3,12 @@ use CodeIgniter\Model;
  
 class Rating_model extends Model
 {
-    protected $table = 'tbl_Rating';
+    protected $table = 'tbl_rating';
     
     public function getRating($id = false)
     {
         if($id === false){
-            return $this->table('tbl_Rating')
+            return $this->table('tbl_rating')
                         ->orderBy('nilai','ASC')
                         ->get()
                         ->getResultArray();
@@ -30,7 +30,7 @@ class Rating_model extends Model
 
     public function getRatingLimit( $limit = 5)
     {
-        return $this->table('tbl_Rating')
+        return $this->table('tbl_rating')
                     ->orderBy('nilai','ASC')
                     ->get($limit)
                     ->getResultArray();

@@ -3,7 +3,7 @@ use CodeIgniter\Model;
  
 class Tempat_model extends Model
 {
-    protected $table = 'tbl_Tempat';
+    protected $table = 'tbl_tempat';
      
     public function getTempat($id = false)
     {
@@ -48,7 +48,7 @@ class Tempat_model extends Model
 
     public function updateStatusTempat($status, $id){
 
-        return $this->db->table('tbl_Tempat')
+        return $this->db->table('tbl_tempat')
                     ->set('status_tmpt',$status)
                     ->where('id_tmpt', $id)
                     ->update();

@@ -28,7 +28,7 @@ class TblDetailTempat extends Migration
 
 		$this->forge->addKey('id_detail_tempat', TRUE);
 		$this->forge->addForeignKey('id_pmsn','tbl_Pemesanan','id_pmsn','CASCADE','CASCADE');
-		$this->forge->addForeignKey('id_tmpt','tbl_Tempat','id_tmpt','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_tmpt','tbl_tempat','id_tmpt','CASCADE','CASCADE');
 		$this->forge->createTable('tbl_detail_tempat');
 	}
 

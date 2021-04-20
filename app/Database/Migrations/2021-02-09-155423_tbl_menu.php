@@ -47,13 +47,13 @@ class TblMenu extends Migration
 		]);
 		$this->forge->addKey('id_menu', TRUE);
 		$this->forge->addForeignKey('id_ktgr','tbl_Kategori','id_ktgr','CASCADE','CASCADE');
-		$this->forge->createTable('tbl_Menu');
+		$this->forge->createTable('tbl_menu');
 	}
 
 	//--------------------------------------------------------------------
 
 	public function down()
 	{
-		$this->forge->dropTable('tbl_Menu');
+		$this->forge->dropTable('tbl_menu');
 	}
 }

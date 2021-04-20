@@ -3,7 +3,7 @@ use CodeIgniter\Model;
  
 class Pelanggan_model extends Model
 {
-    protected $table = 'tbl_Pelanggan';
+    protected $table = 'tbl_pelanggan';
      
     public function getPelanggan($id = false)
     {
@@ -16,12 +16,12 @@ class Pelanggan_model extends Model
 
     public function cek_login($email)
     {
-        $query = $this->table('tbl_Pelanggan')
+        $query = $this->table('tbl_pelanggan')
                 ->where('email', $email)
                 ->countAll();
 
         if($query >  0){
-            $hasil = $this->table('tbl_Pelanggan')
+            $hasil = $this->table('tbl_pelanggan')
                     ->where('email', $email)
                     ->limit(1)
                     ->get()

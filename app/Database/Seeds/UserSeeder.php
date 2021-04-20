@@ -22,6 +22,6 @@ class UserSeeder extends \CodeIgniter\Database\Seeder
             'no_hp'          => '085216167890',
             'password'       => '12345',
         ];
-        $this->db->table('tbl_Pelanggan')->insert($data);
+        $this->db->table('tbl_pelanggan')->insert($data);
     }
 } 

@@ -38,7 +38,7 @@ class TblDetailPemesanan extends Migration
 		]);
 		$this->forge->addKey('id_detail_pemesanan', TRUE);
 		$this->forge->addForeignKey('id_pmsn','tbl_Pemesanan','id_pmsn','CASCADE','CASCADE');
-		$this->forge->addForeignKey('id_menu','tbl_Menu','id_menu','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_menu','tbl_menu','id_menu','CASCADE','CASCADE');
 		$this->forge->createTable('tbl_detail_pemesanan');
 	}
 

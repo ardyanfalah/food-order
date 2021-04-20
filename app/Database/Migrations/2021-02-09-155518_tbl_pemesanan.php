@@ -59,7 +59,7 @@ class TblPemesanan extends Migration
 		]);
 		$this->forge->addKey('id_pmsn', TRUE);
 		$this->forge->addForeignKey('id_admin','tbl_Admin','id_admin','CASCADE','CASCADE');
-		$this->forge->addForeignKey('id_plgn','tbl_Pelanggan','id_plgn','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_plgn','tbl_pelanggan','id_plgn','CASCADE','CASCADE');
 		$this->forge->createTable('tbl_Pemesanan');
 	}
 
