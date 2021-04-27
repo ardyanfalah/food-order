@@ -39,6 +39,7 @@ class RatingAPI extends ResourceController
         $recommendation = array();
         try{
             $pelangganSelf = $pelangganModel->getPelanggan($id);
+            
             $pelangganAll = $pelangganModel->getPelanggan();
             $counter = 0;
             foreach ($pelangganAll as $value) {

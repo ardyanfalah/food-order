@@ -10,8 +10,20 @@ class Pelanggan_model extends Model
         if($id === false){
             return $this->findAll();
         } else {
-            return $this->getWhere(['id_plgn' => $id]);
+            return $this->table('tbl_pelanggan')
+                        ->where('tbl_pelanggan.id_plgn', $id)
+                        ->get()
+                        ->getRowArray();
         }  
+    }
+
+    public function getPelangganWithout($id)
+    {
+
+        $query = $this->db->query(
+            "SELECT * FROM `tbl_pelanggan` WHERE id_plgn != $id"
+        );
+        return $query->getResultArray();
     }
 
     public function cek_login($email)
